@@ -187,16 +187,16 @@
 
             XElement xmldoc = new XElement("Root");
 
-            StorageFile tripsFile;
+            StorageFile expensesFile;
 
-            var item = await folder.TryGetItemAsync("trips.xml");
+            var item = await folder.TryGetItemAsync("expenses.xml");
             if (item == null)
             {
-                tripsFile = await folder.CreateFileAsync("trips.xml");
+                expensesFile = await folder.CreateFileAsync("expenses.xml");
             }
             else
             {
-                tripsFile = await folder.GetFileAsync("trips.xml");
+                expensesFile = await folder.GetFileAsync("expenses.xml");
             }
 
             foreach (var expense in this.Expenses)
@@ -224,7 +224,7 @@
 
             }
 
-            await FileIO.WriteTextAsync(tripsFile, xmldoc.ToString());
+            await FileIO.WriteTextAsync(expensesFile, xmldoc.ToString());
         }
     }
 }
