@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="9a81a2be-7fad-404d-916c-f7c2ad2caf13" Publisher="CN=iliev" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="9a81a2be-7fad-404d-916c-f7c2ad2caf13" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="44e1a2e9-e79e-4b54-b91b-d0be80448b82" Publisher="CN=Veronika" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="44e1a2e9-e79e-4b54-b91b-d0be80448b82" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>PersonalAccounter</DisplayName>
-    <PublisherDisplayName>iliev</PublisherDisplayName>
+    <PublisherDisplayName>Veronika</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,14 +15,14 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="PersonalAccounter.App">
-      <uap:VisualElements DisplayName="PersonalAccounter" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="PersonalAccounter" BackgroundColor="#ff7f27">
-        <uap:LockScreen Notification="badge" BadgeLogo="Assets\BadgeLogo.png" />
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\Square310x310Logo.png">
-          <uap:ShowNameOnTiles>
-            <uap:ShowOn Tile="square310x310Logo" />
-          </uap:ShowNameOnTiles>
+      <uap:VisualElements DisplayName="PersonalAccounter" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="PersonalAccounter" BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#ff7f27" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="portrait" />
+          <uap:Rotation Preference="landscape" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
