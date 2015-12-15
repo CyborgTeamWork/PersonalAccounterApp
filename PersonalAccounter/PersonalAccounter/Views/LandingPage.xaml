@@ -9,19 +9,102 @@
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
+    <Grid Background="#ff7f27" >
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
 
         <c:PageHeader x:Name="pageHeader">
             <c:PageHeader.HeaderContent>
-                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="APP OVERVIEW"/>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Login Form"/>
             </c:PageHeader.HeaderContent>
         </c:PageHeader>
 
-        <ScrollViewer Grid.Row="1" EntranceNavigationTransitionInfo.IsTargetElement="True" Margin="12,4,0,0">
+        <ContentControl  x:Name="container"  
+                         Margin="0,120,0,100">
+            <Popup x:Name="logincontrol1" IsOpen="False" >
+                <StackPanel Orientation="Vertical" 
+                            Background="#ff7f27" 
+                            x:Name="pop" >
+                    <StackPanel>
+                        <TextBlock Text="Sign In With an Account"  
+                                   HorizontalAlignment="Center" 
+                                   Foreground="White" 
+                                   FontSize="25" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0,50" 
+                                HorizontalAlignment="Center">
+                        <TextBlock Text="Email Id" 
+                                   Margin="10" 
+                                   Foreground="White" 
+                                   FontSize="25" />
+                        <TextBox x:Name="id" 
+                                 Height="40" 
+                                 Margin="13,1" 
+                                 Width="408"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Center">
+                        <TextBlock Text="Password" 
+                                   Foreground="White" 
+                                   FontSize="25" />
+                        <PasswordBox  x:Name="pwd" 
+                                      Height="40" 
+                                      Margin="5,1" 
+                                      Width="408"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0,50" 
+                                HorizontalAlignment="Center">
+                        <Button x:Name="loginclick" 
+                                Foreground="Wheat"  
+                                Width="100"
+                                Content="Login" ></Button>
+                        <Button x:Name="cancel" Click="Button_Click_1"  
+                                Foreground="Wheat"  
+                                Width="100"
+                                Content="Cancel" ></Button>
+                    </StackPanel>
+                </StackPanel>
+            </Popup>
+        </ContentControl>
+
+        <ContentControl x:Name="parent"
+                        Grid.Column="1" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center">
+            <Grid Background="#ff7f27"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <TextBlock  Grid.Row="0" 
+                            FontFamily="Bodoni MT" 
+                            FontSize="26.667" 
+                            TextAlignment="Center">
+                    <Run Text="Welcome to"/><LineBreak/>
+                    <Run FontSize="32" Text="ACCOUNTER"/><LineBreak/>
+                    <Run FontSize="24" Text="Your financial best buddy"/><LineBreak/>
+                </TextBlock>
+                <Button Grid.Row="1" 
+                        VerticalAlignment="Top" 
+                        Content="Sign in" 
+                        Height="50"   
+                        Width="313"  
+                        Background="#ff7f27"  
+                        Foreground="#FFF9F7F7"  
+                        BorderBrush="Wheat" 
+                        HorizontalAlignment="Center"   
+                        FontSize="18.667" 
+                        FontFamily="Bodoni MT" 
+                        Click="Button_Click_1"/>
+            </Grid>
+        </ContentControl>
+
+        <!--<ScrollViewer Grid.Row="1" EntranceNavigationTransitionInfo.IsTargetElement="True" Margin="12,4,0,0">
             <StackPanel >
                 <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Top-Level Navigation</TextBlock>
                 <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="12,4">This sample demonstrates a universal Windows app with top-level navigation.</TextBlock>
@@ -42,6 +125,7 @@
                 <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="12,8"> 4) Styles.xaml - Styles including one for a hamburger button.</TextBlock>
                 <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="12,8"> 5) NavMenuListView.cs - A customized ListView to show the navigation items and handle keyboarding.</TextBlock>
             </StackPanel>
-        </ScrollViewer>
+        </ScrollViewer>-->
+        
     </Grid>
 </Page>

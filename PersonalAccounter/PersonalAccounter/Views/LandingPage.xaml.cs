@@ -24,5 +24,23 @@ namespace PersonalAccounter.Views
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (!logincontrol1.IsOpen)
+            {
+                parent.IsEnabled = false;
+                this.Opacity = .4;
+                container.IsEnabled = true;
+                logincontrol1.IsOpen = true;
+                pop.Width = Window.Current.Bounds.Width;
+            }
+            else
+            {
+                logincontrol1.IsOpen = false;
+                this.Opacity = 1.0;
+                parent.IsEnabled = true;
+            }
+        }
     }
 }
