@@ -21,14 +21,102 @@
             </c:PageHeader.HeaderContent>
         </c:PageHeader>
 
-        <ContentControl  x:Name="container"  
-                         Margin="0,120,0,100">
+        <ContentControl x:Name="registerContainer"
+                        Margin="0,120,0,300"  Background="#ff7f27" >
+            <Popup Name="registercontrol1" IsOpen="False">
+                <Grid  x:Name="popReg" 
+                       Grid.Row="2"
+                       Background="#ff7f27">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                        Text="Register New User"  
+                        HorizontalAlignment="Center" 
+                        Foreground="White" 
+                        FontSize="25" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="Email" 
+                               HorizontalAlignment="Right"
+                               Foreground="White" 
+                               FontSize="18" />
+                    
+                    <PasswordBox Grid.Row="1" Grid.Column="1"
+                                 x:Name="mailReg" 
+                                 HorizontalAlignment="Center"
+                                 Height="40" 
+                                 Margin="5,1" 
+                                 Width="408"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="Password" 
+                               HorizontalAlignment="Right"
+                               Foreground="White" 
+                               FontSize="18" />
+                    
+                    <PasswordBox Grid.Row="2" Grid.Column="1"
+                                 x:Name="pwdReg" 
+                                 HorizontalAlignment="Center"
+                                 Height="40" 
+                                 Margin="5,1" 
+                                 Width="408"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="Repeat Password" 
+                               HorizontalAlignment="Right"
+                                Foreground="White" 
+                                FontSize="18" />
+                    
+                    <PasswordBox Grid.Row="3" Grid.Column="1"
+                                 x:Name="pwdRegRepeat" 
+                                 HorizontalAlignment="Center"
+                                Height="40" 
+                                Margin="5,1" 
+                                Width="408"/>
+                    
+                   <Grid  Grid.Row="4" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                       
+                        <Button x:Name="registerclick"
+                                Grid.Column="0"
+                                Foreground="Wheat"  
+                                HorizontalAlignment="Center"
+                                Width="100"
+                                Content="Register" ></Button>
+                        <Button x:Name="cancelReg"
+                                Grid.Column="1"
+                                Click="Button_Cancel_Click_Reg"  
+                                Foreground="Wheat"  
+                                HorizontalAlignment="Center"
+                                Width="100"
+                                Content="Cancel" ></Button>
+                    </Grid>
+                    
+                </Grid>
+            </Popup>
+        </ContentControl>
+        
+        <ContentControl x:Name="container"  
+                        Margin="0,120,0,100">
             <Popup x:Name="logincontrol1" IsOpen="False" >
                 <StackPanel Orientation="Vertical" 
                             Background="#ff7f27" 
                             x:Name="pop" >
                     <StackPanel>
-                        <TextBlock Text="Sign In With an Account"  
+                        <TextBlock Text="Sign In With Email"  
                                    HorizontalAlignment="Center" 
                                    Foreground="White" 
                                    FontSize="25" />
@@ -39,21 +127,22 @@
                         <TextBlock Text="Email Id" 
                                    Margin="10" 
                                    Foreground="White" 
-                                   FontSize="25" />
+                                   FontSize="18" />
                         <TextBox x:Name="id" 
                                  Height="40" 
-                                 Margin="13,1" 
-                                 Width="408"/>
+                                 HorizontalAlignment="Right"
+                                 Width="220"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" 
                                 HorizontalAlignment="Center">
                         <TextBlock Text="Password" 
                                    Foreground="White" 
-                                   FontSize="25" />
+                                   Margin="10" 
+                                   HorizontalAlignment="Right"
+                                   FontSize="18" />
                         <PasswordBox  x:Name="pwd" 
                                       Height="40" 
-                                      Margin="5,1" 
-                                      Width="408"/>
+                                      Width="220"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" 
                                 Margin="0,50" 
@@ -62,7 +151,7 @@
                                 Foreground="Wheat"  
                                 Width="100"
                                 Content="Login" ></Button>
-                        <Button x:Name="cancel" Click="Button_Click_1"  
+                        <Button x:Name="cancel" Click="Button_Cancel_Click_Login"  
                                 Foreground="Wheat"  
                                 Width="100"
                                 Content="Cancel" ></Button>
@@ -79,10 +168,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 
                 <TextBlock  Grid.Row="0" 
-                            FontFamily="Bodoni MT" 
+                            FontFamily="Broadway" 
+                            Foreground="Wheat"
                             FontSize="26.667" 
                             TextAlignment="Center">
                     <Run Text="Welcome to"/><LineBreak/>
@@ -95,12 +186,26 @@
                         Height="50"   
                         Width="313"  
                         Background="#ff7f27"  
-                        Foreground="#FFF9F7F7"  
+                        Foreground="Wheat"  
                         BorderBrush="Wheat" 
                         HorizontalAlignment="Center"   
                         FontSize="18.667" 
-                        FontFamily="Bodoni MT" 
-                        Click="Button_Click_1"/>
+                        FontFamily="Broadway" 
+                        Click="Button_Cancel_Click_Login">
+                </Button>
+
+                <Button Grid.Row="2" 
+                        VerticalAlignment="Top" 
+                        Content="Register" 
+                        Height="50"   
+                        Width="313"  
+                        Background="#ff7f27"  
+                        Foreground="Wheat"  
+                        BorderBrush="Wheat" 
+                        HorizontalAlignment="Center"   
+                        FontSize="18.667" 
+                        FontFamily="Broadway" 
+                        Click="Button_Cancel_Click_Reg"/>
             </Grid>
         </ContentControl>
 

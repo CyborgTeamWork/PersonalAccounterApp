@@ -14,14 +14,24 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
-            <AppBarButton Icon="Edit" Label="Edit"/>
-            <AppBarButton Icon="Delete" Label="Delete"/>
+            <AppBarButton Icon="Edit" Label="Edit">
+            </AppBarButton>
+            <AppBarButton Icon="Delete" Label="Delete">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="myFlyout">
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="The current selection will be deleted!" Margin="0,0,0,12" />
+                            <Button Click="DeleteConfirmation_Click" Content="Yes, delete current item" />
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
             <AppBarSeparator/>
             <AppBarToggleButton Icon="Sort" Label="Sort"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Expenses"/>
-                <AppBarButton Label="My Budget"/>
-                <AppBarButton Label="Setings"/>
+                <AppBarButton Label="Edit"/>
+                <AppBarButton Label="Delete"/>
+                <AppBarButton Label="Sort"/>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <ctl:PageHeader>

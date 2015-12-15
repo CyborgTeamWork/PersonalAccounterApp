@@ -24,5 +24,12 @@ namespace PersonalAccounter.Views
         {
             this.InitializeComponent();
         }
+
+        public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
+        {
+            // some real delete action to be added 
+
+            myFlyout.Hide();
+        }
     }
 }

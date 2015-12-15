@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
+                                          
         <ctl:PageHeader Grid.ColumnSpan="2">
             <ctl:PageHeader.HeaderContent>
                 <TextBlock Text="BASIC SUBPAGE" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>

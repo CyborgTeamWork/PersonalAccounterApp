@@ -25,7 +25,7 @@ namespace PersonalAccounter.Views
             this.InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Cancel_Click_Login(object sender, RoutedEventArgs e)
         {
             if (!logincontrol1.IsOpen)
             {
@@ -38,6 +38,24 @@ namespace PersonalAccounter.Views
             else
             {
                 logincontrol1.IsOpen = false;
+                this.Opacity = 1.0;
+                parent.IsEnabled = true;
+            }
+        }
+
+        private void Button_Cancel_Click_Reg(object sender, RoutedEventArgs e)
+        {
+            if (!registercontrol1.IsOpen)
+            {
+                parent.IsEnabled = false;
+                this.Opacity = .4;
+                registerContainer.IsEnabled = true;
+                registercontrol1.IsOpen = true;
+                popReg.Width = Window.Current.Bounds.Width;
+            }
+            else
+            {
+                registercontrol1.IsOpen = false;
                 this.Opacity = 1.0;
                 parent.IsEnabled = true;
             }
