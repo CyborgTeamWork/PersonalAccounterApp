@@ -19,7 +19,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="NavMenuItemTemplate" x:DataType="local:NavMenuItem">
-            <Grid>
+            <Grid Background="Black">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
@@ -28,8 +28,8 @@
                      It appears when the user hovers over the icon, but not the label which provides
                      value when the SplitView is 'Compact' while reducing the likelihood of showing
                      redundant information when the label is shown.-->
-                <FontIcon x:Name="Glyph" FontSize="16" Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}"/>
-                <TextBlock x:Name="Text" Grid.Column="1" Text="{x:Bind Label}" />
+                <FontIcon x:Name="Glyph" Foreground="White" FontSize="16" Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}"/>
+                <TextBlock x:Name="Text" Foreground="White" Grid.Column="1" Text="{x:Bind Label}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -66,7 +66,8 @@
             <SplitView.Pane>
                 <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                 <controls:NavMenuListView x:Name="NavMenuList"
-                                          TabIndex="3"
+                                          TabIndex="7"
+                                          Background="Black"
                                           Margin="0,48,0,0"
                                           ContainerContentChanging="NavMenuItemContainerContentChanging"
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
@@ -94,7 +95,7 @@
         <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
         <ToggleButton x:Name="TogglePaneButton"
                       TabIndex="1"
-                      Style="{StaticResource SplitViewTogglePaneButtonStyle}"
+                      Style="{StaticResource SplitViewTogglePaneButtonStyle}" 
                       IsChecked="{Binding IsPaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
                       Unchecked="TogglePaneButton_Checked"
                       AutomationProperties.Name="Menu"

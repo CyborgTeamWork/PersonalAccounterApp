@@ -19,7 +19,7 @@
 
         <ContentControl x:Name="container"  
                         Margin="0,120,0,100">
-            <Popup x:Name="logincontrol1" IsOpen="False" >
+            <Popup x:Name="logincontrol1" IsOpen="False">
                 <StackPanel x:Name="pop" 
                             Orientation="Vertical" 
                             Background="#ff7f27">

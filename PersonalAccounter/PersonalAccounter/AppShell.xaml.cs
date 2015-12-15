@@ -31,21 +31,45 @@ namespace PersonalAccounter
             {
                 new NavMenuItem()
                 {
+                    Symbol = Symbol.Go,
+                    Label = "Sign In",
+                    DestPage = typeof(LoginPageView)
+                },
+                new NavMenuItem()
+                {
                     Symbol = Symbol.Contact,
-                    Label = "Basic Page",
+                    Label = "HouseHold",
+                    DestPage = typeof(HouseHoldPage)
+                },
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.People,
+                    Label = "LifeStyle",
+                    DestPage = typeof(LifeStylePage)
+                },
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.UnFavorite,
+                    Label = "Unexpected",
+                    DestPage = typeof(UnexpectedPage)
+                },
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.ThreeBars,
+                    Label = "My Budjet",
                     DestPage = typeof(BasicPage)
                 },
                 new NavMenuItem()
                 {
-                    Symbol = Symbol.Edit,
-                    Label = "CommandBar Page",
-                    DestPage = typeof(CommandBarPage)
+                    Symbol = Symbol.Like,
+                    Label = "Wishes",
+                    DestPage = typeof(DrillInPage)
                 },
                 new NavMenuItem()
                 {
-                    Symbol = Symbol.Favorite,
-                    Label = "Drill In Page",
-                    DestPage = typeof(DrillInPage)
+                    Symbol = Symbol.Edit,
+                    Label = "Settings",
+                    DestPage = typeof(CommandBarPage)
                 },
             });
 

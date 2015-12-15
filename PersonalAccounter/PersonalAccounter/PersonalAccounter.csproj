@@ -107,6 +107,15 @@
     </Compile>
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\UnexpectedPage.xaml.cs">
+      <DependentUpon>UnexpectedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LifeStylePage.xaml.cs">
+      <DependentUpon>LifeStylePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HouseHoldPage.xaml.cs">
+      <DependentUpon>HouseHoldPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BasicPage.xaml.cs">
       <DependentUpon>BasicPage.xaml</DependentUpon>
     </Compile>
@@ -168,6 +177,18 @@
     <Page Include="Styles\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UnexpectedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LifeStylePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HouseHoldPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BasicPage.xaml">
       <SubType>Designer</SubType>
