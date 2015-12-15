@@ -13,15 +13,15 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <CommandBar x:Name="topbar" VerticalAlignment="Top" HorizontalContentAlignment="Stretch">
+        <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
             <AppBarButton Icon="Edit" Label="Edit"/>
             <AppBarButton Icon="Delete" Label="Delete"/>
             <AppBarSeparator/>
             <AppBarToggleButton Icon="Sort" Label="Sort"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Menu Item 1"/>
-                <AppBarButton Label="Menu Item 2"/>
-                <AppBarButton Label="Menu Item 3"/>
+                <AppBarButton Label="Expenses"/>
+                <AppBarButton Label="My Budget"/>
+                <AppBarButton Label="Setings"/>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <ctl:PageHeader>
@@ -32,7 +32,7 @@
             </CommandBar.Content>
         </CommandBar>
 
-        <Grid Grid.Row="1" EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <Grid Grid.Row="0" EntranceNavigationTransitionInfo.IsTargetElement="True">
             <TextBlock Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Your App Content"/>
         </Grid>
 
