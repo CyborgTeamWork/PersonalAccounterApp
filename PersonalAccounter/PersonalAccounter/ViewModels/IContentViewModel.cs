@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalAccounter.ViewModels
 {
-    interface IContentViewModel
+    public interface IContentViewModel
     {
     }
 }
