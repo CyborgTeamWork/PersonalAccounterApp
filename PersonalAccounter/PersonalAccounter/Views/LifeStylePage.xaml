@@ -3,14 +3,140 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PersonalAccounter.Views"
+    xmlns:c="using:PersonalAccounter.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:PersonalAccounter.ViewModels"
+    Name="lifestylePage"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Page.Resources>
+        <DataTemplate x:Key="lifeExpenseItemTemplate">
+            <Grid  Background="OrangeRed" MaxWidth="500">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="123"/>
+                    </Grid.ColumnDefinitions>
 
-        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Your App Content"/>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="12,0,0,0">
+                        <TextBlock Text=" Cost: " Style="{StaticResource ShowItemInfoTextBlock}"/>
+                        <TextBlock MaxWidth="300" Text="{Binding Cost}" Style="{StaticResource ShowItemCostTextBlock}" TextWrapping="WrapWholeWords"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="12,0,0,0">
+                        <TextBlock Text=" Name: " Style="{StaticResource ShowItemInfoTextBlock}"/>
+                        <TextBlock MaxWidth="300" Text="{Binding Name}" Style="{StaticResource ShowItemNameTextBlock}"  TextWrapping="WrapWholeWords"/>
+                    </StackPanel>
+
+                    <StackPanel  Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="12,0,0,0">
+                        <TextBlock Text=" Info: " Style="{StaticResource ShowItemInfoTextBlock}"/>
+                        <TextBlock MaxWidth="300" Text="{Binding Description}" Style="{StaticResource ShowItemNameTextBlock}" TextWrapping="WrapWholeWords"/>
+                    </StackPanel>
+
+                    <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" 
+                             Width="100" 
+                             Height="100" 
+                             Margin="0,12,12,12">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding ImageUrl}" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <Button Content="Delete" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"
+                            CommandParameter="{Binding}"
+                            Command="{Binding ElementName=lifestylePage, Path=DataContext.ContentViewModel.Delete}"/>
+           </Grid>
+
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+
+        <c:PageHeader x:Name="pageHeader">
+            <c:PageHeader.HeaderContent>
+                <TextBlock x:Name="title" Text="LifeStyle Expenses" 
+                           Style="{ThemeResource PageTitleTextBlockStyle}" />
+            </c:PageHeader.HeaderContent>
+        </c:PageHeader>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="330"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Name="panelAdd" Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MainGridStyle}">
+                <Grid.Resources>
+                    <viewModels:LifeStyleViewModel x:Key="newLifeExpense"/>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="280" />
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" DataContext="{StaticResource newLifeExpense}" Height="280">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Add new expense" Style="{StaticResource TitleExpenseTextBlockStyle}"/>
+
+                    <TextBlock Grid.Row="1" Text="Expense name: " Style="{StaticResource InputItemTextBlockStyle}"/>
+                    <TextBox Name="tbName"
+                             PlaceholderText="Add Expense Name" 
+                             Grid.Row="1" Text="{Binding Name, Mode=TwoWay}"
+                             Style="{StaticResource InputItemTextBoxStyle}"/>
+
+                    <TextBlock Grid.Row="2" Text="Image URL: " 
+                               Style="{StaticResource InputItemTextBlockStyle}"/>
+                    <TextBox Name="tbImage" 
+                             Text="{Binding ImageUrl, Mode=TwoWay}" 
+                             Grid.Row="2" 
+                             PlaceholderText="Add Expense Image URL"
+                             Style="{StaticResource InputItemTextBoxStyle}"/>
+
+                    <TextBlock Grid.Row="3" Text="Cost: " 
+                               Style="{StaticResource InputItemTextBlockStyle}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Height="30" Margin="36,2,24,0"  >
+                        <Slider Name="tbCost" Value="{Binding Cost, Mode=TwoWay}"
+                                Style="{StaticResource CostSliderStyle}"/>
+                        <TextBox Text="{Binding ElementName=tbCost, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                Style="{StaticResource CostSliderTexBox}"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="4" Text="Short info: " 
+                               Margin="36,0,24,2"  
+                               Foreground="White"/>
+                    <TextBox Name="tbDesc" Grid.Row="4" Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info" 
+                             Style="{StaticResource ShortInfoTextBoxStyle}"/>
+                </Grid>
+
+                <Button Content="Save"
+                    Grid.Row="1"
+                    Style="{StaticResource LoginFormLoginButtonStyle}"
+                    Height="30" 
+                    Width="100" 
+                    CommandParameter="{StaticResource newLifeExpense}"
+                    Command="{Binding ContentViewModel.Save}"/>
+                
+            </Grid>
+
+            <Grid Name="panelContent" Grid.Row="1" Background="OrangeRed">
+                <ListBox ItemsSource="{Binding ContentViewModel.LifeExpenses}"
+                         ItemTemplate="{StaticResource lifeExpenseItemTemplate}"/>
+            </Grid>
+
+        </Grid>
 
     </Grid>
 </Page>

@@ -105,6 +105,7 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\Expense.cs" />
@@ -112,8 +113,22 @@
     <Compile Include="Models\Repository\IRepository.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Wishlist.cs" />
+=======
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Helpers\DelegateCommand.cs" />
+>>>>>>> e07c8ddb4d731ddbe6179e55a6dffdbf6d87d540
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ExpenseType.cs" />
+    <Compile Include="ViewModels\HouseHoldContentViewModel.cs" />
+    <Compile Include="ViewModels\HouseHoldViewModel.cs" />
+    <Compile Include="ViewModels\IContentViewModel.cs" />
+    <Compile Include="ViewModels\IPageViewModel.cs" />
+    <Compile Include="ViewModels\LifeStyleContentViewModel.cs" />
+    <Compile Include="ViewModels\LifeStyleViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\UnexpectedPage.xaml.cs">
       <DependentUpon>UnexpectedPage.xaml</DependentUpon>
     </Compile>
@@ -186,8 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
+<<<<<<< HEAD
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
+=======
+    <Folder Include="Models\" />
+>>>>>>> e07c8ddb4d731ddbe6179e55a6dffdbf6d87d540
   </ItemGroup>
   <ItemGroup>
     <Page Include="AppShell.xaml">
