@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using PersonalAccounter.Models;
+using PersonalAccounter.Models.Repository;
+using SQLite.Net;
+using SQLite.Net.Async;
+using SQLite.Net.Platform.WinRT;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace PersonalAccounter.Views
 {
@@ -20,9 +19,12 @@ namespace PersonalAccounter.Views
     /// </summary>
     public sealed partial class LoginPageView : Page
     {
+        private IRepository<User> users;
+
         public LoginPageView()
         {
             this.InitializeComponent();
+            this.users = GenericRepostory<User>.Repostory;
         }
 
         private void Button_Toggle_Click_Login(object sender, RoutedEventArgs e)
@@ -40,6 +42,23 @@ namespace PersonalAccounter.Views
                 logincontrol1.IsOpen = false;
                 this.Opacity = 1.0;
                 parent.IsEnabled = true;
+            }
+        }
+
+        private void SignInClick(object sender, RoutedEventArgs e)
+        {
+            string username = id.Text;
+            string password = pwd.Password;
+            var newUser = new User
+            {
+                WindowsId = username,
+                Password = password
+            };
+            var registered = users.Get().Result;
+            if(!registered.Contains(newUser))
+            {
+                users.Insert(newUser);
+                
             }
         }
     }

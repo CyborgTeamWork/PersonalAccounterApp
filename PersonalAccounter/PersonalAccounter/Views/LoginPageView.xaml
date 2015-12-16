@@ -43,7 +43,8 @@
                         <Button x:Name="loginclick" 
                                 Foreground="Wheat"  
                                 Width="100"
-                                Content="Login" ></Button>
+                                Content="Login" 
+                                Click ="SignInClick"></Button>
                         <Button x:Name="cancel" Click="Button_Toggle_Click_Login"  
                                 Foreground="Wheat"  
                                 Width="100"

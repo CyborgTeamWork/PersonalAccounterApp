@@ -5,6 +5,8 @@
     "Microsoft.ApplicationInsights.WindowsApps": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta3",
+    "SQLite.Net-PCL": "3.1.1",
+    "SQLite.Net.Async-PCL": "3.1.1",
     "WinRTXamlToolkit.Controls.DataVisualization.UWP": "1.9.4"
   },
   "frameworks": {

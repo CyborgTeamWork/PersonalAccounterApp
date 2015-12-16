@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Windows.Foundation;
-using Windows.Foundation.Metadata;
+using Windows.Storage;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PersonalAccounter.Controls;
 using PersonalAccounter.Views;
+using PersonalAccounter.Models;
+using SQLite.Net;
+using SQLite.Net.Async;
+using SQLite.Net.Platform.WinRT;
 
 namespace PersonalAccounter
 {
@@ -83,7 +83,6 @@ namespace PersonalAccounter
         public AppShell()
         {
             this.InitializeComponent();
-
             this.Loaded += (sender, args) =>
             {
                 Current = this;
@@ -103,6 +102,7 @@ namespace PersonalAccounter
             SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManager_BackRequested;
 
             NavMenuList.ItemsSource = navlist;
+            //this.InitAsync();
         }
 
         public Frame AppFrame { get { return this.frame; } }
@@ -315,5 +315,29 @@ namespace PersonalAccounter
                 args.ItemContainer.ClearValue(AutomationProperties.NameProperty);
             }
         }
+
+        //public SQLiteAsyncConnection GetDbConnectionAsync()
+        //{
+        //    var dbFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "accounterDb.sqlite");
+
+        //    var connectionFactory =
+        //        new Func<SQLiteConnectionWithLock>(
+        //            () =>
+        //            new SQLiteConnectionWithLock(
+        //                new SQLitePlatformWinRT(),
+        //                new SQLiteConnectionString(dbFilePath, storeDateTimeAsTicks: false)));
+
+        //    var asyncConnection = new SQLiteAsyncConnection(connectionFactory);
+
+        //    return asyncConnection;
+        //}
+
+        //public async void InitAsync()
+        //{
+        //    var connection = this.GetDbConnectionAsync();
+        //    await connection.CreateTablesAsync<User, Expense, Wishlist>();
+        //}
+
+
     }
 }
