@@ -12,41 +12,48 @@
 
     <Page.Resources>
         <DataTemplate x:Key="lifeExpenseItemTemplate">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Image Source="{Binding ImageUrl}" 
-                                   Grid.Row="0"
-                                   Grid.Column="0"
-                                   Grid.RowSpan="3"/>
-                <TextBlock Text="{Binding Name}"
-                                       Grid.Row="0"
-                                       Grid.Column="1"/>
-                <TextBlock Text="{Binding Cost}"
-                                       Grid.Row="1"
-                                       Grid.Column="1"/>
-                <TextBlock Text="{Binding Description}"
-                                       Grid.Row="2"
-                                       Grid.Column="1"/>
-                <Button Content="Delete"
-                        Grid.Row="3"
-                        CommandParameter="{Binding}"
-                        Command="{Binding ElementName=lifestylePage,
-                                          Path=DataContext.ContentViewModel.Delete}"/>
-            </Grid>
+            <Grid  Background="OrangeRed" MaxWidth="500">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="123"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="12,0,0,0">
+                        <TextBlock Text=" Cost: " Style="{StaticResource ShowItemInfoTextBlock}"/>
+                        <TextBlock MaxWidth="300" Text="{Binding Cost}" Style="{StaticResource ShowItemCostTextBlock}" TextWrapping="WrapWholeWords"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="12,0,0,0">
+                        <TextBlock Text=" Name: " Style="{StaticResource ShowItemInfoTextBlock}"/>
+                        <TextBlock MaxWidth="300" Text="{Binding Name}" Style="{StaticResource ShowItemNameTextBlock}"  TextWrapping="WrapWholeWords"/>
+                    </StackPanel>
+
+                    <StackPanel  Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="12,0,0,0">
+                        <TextBlock Text=" Info: " Style="{StaticResource ShowItemInfoTextBlock}"/>
+                        <TextBlock MaxWidth="300" Text="{Binding Description}" Style="{StaticResource ShowItemNameTextBlock}" TextWrapping="WrapWholeWords"/>
+                    </StackPanel>
+
+                    <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Width="100" Height="100" Margin="0,12,12,12">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding ImageUrl}" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <Button Content="Delete" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"
+                            CommandParameter="{Binding}"
+                            Command="{Binding ElementName=lifestylePage, Path=DataContext.ContentViewModel.Delete}"/>
+           </Grid>
+
         </DataTemplate>
     </Page.Resources>
 
-    <Grid  Style="{StaticResource MainGridStyle}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <c:PageHeader x:Name="pageHeader">
             <c:PageHeader.HeaderContent>
@@ -54,70 +61,69 @@
             </c:PageHeader.HeaderContent>
         </c:PageHeader>
 
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="330"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Grid Name="panelAdd" Grid.Row="0">
+            <Grid Name="panelAdd" Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MainGridStyle}">
                 <Grid.Resources>
                     <viewModels:LifeStyleViewModel x:Key="newLifeExpense"/>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="4*" />
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="280" />
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" DataContext="{StaticResource newLifeExpense}">
+                <Grid Grid.Row="0" DataContext="{StaticResource newLifeExpense}" Height="280">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*" />
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Expense Name: " Margin="36,0,24,0" />
-                    <TextBox Name="tbName"
-                     Grid.Row="0"
-                     Height="30" Margin="36,0,24,0"
+                    <TextBlock Grid.Row="0" Text="Add new expense" Margin="48,0,24,0" Foreground="White"/>
+
+                    <TextBlock Grid.Row="1" Text="Expense name: "  Margin="36,0,24,2"  Foreground="White"/>
+                    <TextBox Name="tbName" PlaceholderText="Add Expense Name"  Margin="36,2,24,0" 
+                     Grid.Row="1"
+                     Height="30" 
+                     Background="Wheat"
                      Text="{Binding Name, Mode=TwoWay}"/>
 
-                    <TextBlock Grid.Row="1" Text="Image URL: " Margin="36,0,24,0" />
-                    <TextBox Name="tbImage"
-                     Grid.Row="1"
-                     Height="30" Margin="36,0,24,0"
+                    <TextBlock Grid.Row="2" Text="Image URL: " Margin="36,0,24,2"  Foreground="White"/>
+                    <TextBox Name="tbImage" PlaceholderText="Add Expense Image URL"   Margin="36,2,24,0" 
+                     Grid.Row="2"
+                     Height="30" 
+                     Background="Wheat"
                      Text="{Binding ImageUrl, Mode=TwoWay}"/>
 
-                    <TextBlock Grid.Row="2" Text="Cost: " Margin="36,0,24,0" />
-                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="24,0,24,0" Height="30" >
-                        <Slider Width="200" Margin="12,0,12,0" Minimum="1" Maximum="1000" TickPlacement="BottomRight" Name="tbCost" Value="{Binding Cost, Mode=TwoWay}"/>
-                        <TextBox Width="50" Margin="0,0,12,0" Text="{Binding ElementName=tbCost, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right" />
+                    <TextBlock Grid.Row="3" Text="Cost: " Margin="36,0,24,2"  Foreground="White" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Height="30"  Margin="36,2,24,0"  >
+                        <Slider Width="160" Minimum="1" Maximum="1000" TickPlacement="BottomRight" Name="tbCost" Value="{Binding Cost, Mode=TwoWay}" Margin="12,0,12,0"/>
+                        <TextBox Width="50" Background="Wheat" Text="{Binding ElementName=tbCost, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextAlignment="Right" />
                     </StackPanel>
 
-                    <TextBlock Grid.Row="3" Text="Short Info: " Margin="36,0,24,0" />
-                    <TextBox Name="tbDesc"
-                     Grid.Row="3"
-                     Height="30" Margin="36,0,24,0"
-                     Text="{Binding Description, Mode=TwoWay}"/>
+                    <TextBlock Grid.Row="4" Text="Short info: " Margin="36,0,24,2"  Foreground="White"/>
+                    <TextBox Name="tbDesc" Grid.Row="4" Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info" 
+                     Margin="36,2,24,0" Background="Wheat" Foreground="DarkGray" Height="30"/>
                 </Grid>
 
                 <Button Content="Save"
-                    Grid.Row="3"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
+                    Grid.Row="1"
                     Style="{StaticResource LoginFormLoginButtonStyle}"
-                        Height="20" Width="100"
+                        Height="30" Width="100" 
                     CommandParameter="{StaticResource newLifeExpense}"
                     Command="{Binding ContentViewModel.Save}"/>
                 
             </Grid>
 
-
-            <Grid Name="panelContent"
-              Grid.Row="1">
+            <Grid Name="panelContent" Grid.Row="1" Background="OrangeRed">
                 <ListBox ItemsSource="{Binding ContentViewModel.LifeExpenses}"
-                     ItemTemplate="{StaticResource lifeExpenseItemTemplate}"/>
+                         ItemTemplate="{StaticResource lifeExpenseItemTemplate}"/>
             </Grid>
 
         </Grid>
