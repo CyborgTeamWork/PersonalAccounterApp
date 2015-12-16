@@ -117,6 +117,7 @@
     <Compile Include="ViewModels\LifeStyleContentViewModel.cs" />
     <Compile Include="ViewModels\LifeStyleViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\UnexpectedPage.xaml.cs">
       <DependentUpon>UnexpectedPage.xaml</DependentUpon>
