@@ -1,19 +1,10 @@
-﻿using System;
-using System.IO;
-using Windows.Storage;
-using Windows.UI.Notifications;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Controls;
-using PersonalAccounter.Models;
-using PersonalAccounter.Models.Repository;
-using SQLite.Net;
-using SQLite.Net.Async;
-using SQLite.Net.Platform.WinRT;
-using WinRTXamlToolkit.Controls.Extensions;
-
-namespace PersonalAccounter.Views
+﻿namespace PersonalAccounter.Views
 {
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using PersonalAccounter.Models;
+    using PersonalAccounter.Models.Repository;
+
     public sealed partial class LoginPageView : Page
     {
         private IRepository<User> users;
