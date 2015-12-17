@@ -1,19 +1,30 @@
-﻿namespace PersonalAccounter.Views
-{
-    using Windows.UI.Xaml;
-    using Windows.UI.Xaml.Controls;
-    using PersonalAccounter.Models;
-    using PersonalAccounter.Models.Repository;
+﻿using System;
+using System.IO;
+using Windows.Data.Xml.Dom;
+using Windows.Storage;
+using Windows.UI.Notifications;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
+using Windows.UI.Xaml.Controls;
+using Parse;
+using PersonalAccounter.Models;
+using PersonalAccounter.Models.Repository;
+using PersonalAccounter.ViewModels;
+using SQLite.Net;
+using SQLite.Net.Async;
+using SQLite.Net.Platform.WinRT;
+using WinRTXamlToolkit.Controls.Extensions;
 
+namespace PersonalAccounter.Views
+{
     public sealed partial class LoginPageView : Page
     {
-        private IRepository<User> users;
-
+        private UserViewModel userViewModel = new UserViewModel();
         public LoginPageView()
         {
             this.InitializeComponent();
-            this.users = GenericRepostory<User>.Repostory;
-            this.DataContext = this;
+            this.DataContext = userViewModel;
         }
 
         private void Button_Toggle_Click_Login(object sender, RoutedEventArgs e)
@@ -36,25 +47,13 @@
 
         private void SignInClick(object sender, RoutedEventArgs e)
         {
-            this.RegisterUser();
-            this.Frame.Navigate(typeof(BasicPage));
-            
-        }
-
-        private async void RegisterUser()
-        {
             string username = id.Text;
             string password = pwd.Password;
-            var newUser = new User
-            {
-                WindowsId = username,
-                Password = password
-            };
-            var registered =  await users.Get();
-            if (!registered.Contains(newUser))
-            {
-                await users.Insert(newUser);
-            }
+            userViewModel.RegisterUser(username, password);
+            this.Frame.Navigate(typeof(BasicPage));
+            var successMessage = new MessageDialog("You successfully signed in!");
+            successMessage.ShowAsync();
+
         }
     }
 }
