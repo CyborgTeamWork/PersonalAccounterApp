@@ -19,7 +19,7 @@ namespace PersonalAccounter.Models
 
         public Category Category { get; set; }
 
-        [ForeignKey(User)]
+        [ForeignKey("")]
         public int UserId { get; set; }
     }
 }

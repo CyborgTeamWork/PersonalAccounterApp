@@ -47,6 +47,12 @@ namespace PersonalAccounter.Views
 
         private void SignInClick(object sender, RoutedEventArgs e)
         {
+            this.RegisterUser();
+            this.Frame.Navigate(typeof(DrillInPage));
+        }
+
+        private async void RegisterUser()
+        {
             string username = id.Text;
             string password = pwd.Password;
             var newUser = new User
@@ -54,11 +60,10 @@ namespace PersonalAccounter.Views
                 WindowsId = username,
                 Password = password
             };
-            var registered = users.Get().Result;
-            if(!registered.Contains(newUser))
+            var registered =  await users.Get();
+            if (!registered.Contains(newUser))
             {
-                users.Insert(newUser);
-                
+                await users.Insert(newUser);
             }
         }
     }
