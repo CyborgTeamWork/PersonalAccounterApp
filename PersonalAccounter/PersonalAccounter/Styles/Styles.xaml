@@ -44,19 +44,22 @@
     <Style x:Key="ShowItemInfoTextBlock" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Wheat" />
         <Setter Property="FontFamily" Value="Broadway" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
     <Style x:Key="ShowItemNameTextBlock" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#89CFBC" />
         <Setter Property="FontFamily" Value="Broadway" />
         <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
     <Style x:Key="ShowItemCostTextBlock" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#89CFBC" />
         <Setter Property="FontFamily" Value="Broadway" />
         <Setter Property="FontSize" Value="48" />
+        <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
     <Style x:Key="MainGridStyle" TargetType="Grid">

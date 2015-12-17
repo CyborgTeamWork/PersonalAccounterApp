@@ -3,14 +3,90 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PersonalAccounter.Views"
+    xmlns:ctl="using:PersonalAccounter.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:PersonalAccounter.ViewModels"
+    Name="lifestyleExpensesPage"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Page.Resources>
+        <DataTemplate x:Key="houseHoldExpenseItemTemplate">
 
-        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Your App Content"/>
+            <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto"  VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+
+                    <Ellipse x:Name="ResizeView" Width="160" Height="160" Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding ImageUrl}" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <TextBlock Text=" Cost: " Style="{StaticResource ShowItemInfoTextBlock}" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Cost}" Style="{StaticResource ShowItemCostTextBlock}" Margin="0,10,0,0" TextWrapping="Wrap"/>
+
+                    <TextBlock Text=" Name: " Style="{StaticResource ShowItemInfoTextBlock}" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource ShowItemNameTextBlock}"  Margin="0,10,0,0" TextWrapping="Wrap"/>
+
+                    <TextBlock Text=" Info: " Style="{StaticResource ShowItemInfoTextBlock}" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Description}"  Margin="0,10,0,0" Style="{StaticResource ShowItemInfoTextBlock}" TextWrapping="Wrap"/>
+
+                    <Button Content="Delete" Margin="0,10,0,0" CommandParameter="{Binding}"
+                            Command="{Binding ElementName=lifestyleExpensesPage, Path=DataContext.ContentViewModel.Delete}"/>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </DataTemplate>
+    </Page.Resources>
+
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Background="#ff7f27">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <ListBox ItemsSource="{Binding ContentViewModel.HouseHoldExpenses}" 
+                     ItemTemplate="{StaticResource houseHoldExpenseItemTemplate}"
+                     Background="#ff7f27"/>
+        </Grid>
+
+        <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
+
+            <AppBarButton Icon="Add" Label="Add">
+            </AppBarButton>
+
+            <AppBarButton Icon="Delete" Label="Delete">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="flyoutElement">
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="The current selection will be deleted!" Margin="0,0,0,12" />
+                            <Button Click="DeleteConfirmation_Click" Content="Yes, delete current item" />
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+
+            <AppBarToggleButton Icon="Edit" Label="Edit"/>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Add Expense"/>
+                <AppBarButton Label="Delete Expense"/>
+                <AppBarButton Label="Edit Expense"/>
+            </CommandBar.SecondaryCommands>
+
+            <CommandBar.Content>
+                <ctl:PageHeader>
+                    <ctl:PageHeader.HeaderContent>
+                        <TextBlock Text="COMMANDBAR PAGE" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                    </ctl:PageHeader.HeaderContent>
+                </ctl:PageHeader>
+            </CommandBar.Content>
+
+        </CommandBar>
 
     </Grid>
 </Page>
