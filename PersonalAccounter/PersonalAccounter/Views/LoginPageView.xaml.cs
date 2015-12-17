@@ -14,9 +14,6 @@ using WinRTXamlToolkit.Controls.Extensions;
 
 namespace PersonalAccounter.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class LoginPageView : Page
     {
         private IRepository<User> users;
@@ -25,6 +22,7 @@ namespace PersonalAccounter.Views
         {
             this.InitializeComponent();
             this.users = GenericRepostory<User>.Repostory;
+            this.DataContext = this;
         }
 
         private void Button_Toggle_Click_Login(object sender, RoutedEventArgs e)
@@ -48,7 +46,8 @@ namespace PersonalAccounter.Views
         private void SignInClick(object sender, RoutedEventArgs e)
         {
             this.RegisterUser();
-            this.Frame.Navigate(typeof(DrillInPage));
+            this.Frame.Navigate(typeof(BasicPage));
+            
         }
 
         private async void RegisterUser()

@@ -9,6 +9,7 @@
     /// </summary>
     public sealed partial class HouseHoldPage : Page
     {
+
         public HouseHoldPage()
         {
             this.InitializeComponent();
