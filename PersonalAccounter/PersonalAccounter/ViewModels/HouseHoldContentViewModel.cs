@@ -15,6 +15,7 @@ namespace PersonalAccounter.ViewModels
         public ObservableCollection<HouseHoldViewModel> houseHoldExpenses;
         private ICommand saveCommand;
         private ICommand deleteCommand;
+        private ICommand editCommand;
 
         public IEnumerable<HouseHoldViewModel> HouseHoldExpenses
         {
@@ -66,6 +67,21 @@ namespace PersonalAccounter.ViewModels
                     });
                 }
                 return this.deleteCommand;
+            }
+        }
+
+        public ICommand Edit
+        {
+            get
+            {
+                if (this.editCommand == null)
+                {
+                    this.editCommand = new DelegateCommand<HouseHoldViewModel>((newExpense) =>
+                    {
+                        this.houseHoldExpenses.Add(new HouseHoldViewModel(newExpense));
+                    });
+                }
+                return this.editCommand;
             }
         }
     }

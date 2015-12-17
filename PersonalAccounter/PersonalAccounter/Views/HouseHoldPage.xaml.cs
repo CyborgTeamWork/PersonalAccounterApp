@@ -10,11 +10,11 @@
     /// </summary>
     public sealed partial class HouseHoldPage : Page
     {
+        private HouseHoldPage rootPage;
 
         public HouseHoldPage()
         {
             this.InitializeComponent();
-
             var contentViewModel = new HouseHoldContentViewModel();
 
             contentViewModel.HouseHoldExpenses = new List<HouseHoldViewModel>()
@@ -25,6 +25,11 @@
             };
 
             this.DataContext = new MainPageViewModel(contentViewModel);
+        }
+
+        public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
+        {
+            // some real delete action to be added 
         }
     }
 }

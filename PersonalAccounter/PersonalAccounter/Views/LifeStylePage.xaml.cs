@@ -44,18 +44,6 @@ namespace PersonalAccounter.Views
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
         {
             // some real delete action to be added 
-
-            flyoutElement.Hide();
-        }
-
-        void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
-        {
-            UpdateContent();
-        }
-
-        void UpdateContent()
-        {
-            Rect bounds = Window.Current.Bounds;
         }
     }
 }
