@@ -1,23 +1,16 @@
-<<<<<<< HEAD
 ﻿using System;
 using System.IO;
 using Windows.Storage;
 using Windows.UI.Notifications;
-=======
-﻿using PersonalAccounter.ViewModels;
->>>>>>> e07c8ddb4d731ddbe6179e55a6dffdbf6d87d540
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
-<<<<<<< HEAD
 using PersonalAccounter.Models;
 using PersonalAccounter.Models.Repository;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Platform.WinRT;
 using WinRTXamlToolkit.Controls.Extensions;
-=======
->>>>>>> e07c8ddb4d731ddbe6179e55a6dffdbf6d87d540
 
 namespace PersonalAccounter.Views
 {
@@ -31,16 +24,7 @@ namespace PersonalAccounter.Views
         public LoginPageView()
         {
             this.InitializeComponent();
-<<<<<<< HEAD
             this.users = GenericRepostory<User>.Repostory;
-=======
-
-            this.DataContext = new UserViewModel("pesho@abv.bg", "password");
-        }
-
-        private void Button_Login(object sender, RoutedEventArgs e)
-        {
->>>>>>> e07c8ddb4d731ddbe6179e55a6dffdbf6d87d540
         }
 
         private void Button_Toggle_Click_Login(object sender, RoutedEventArgs e)
