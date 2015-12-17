@@ -126,6 +126,7 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\UnexpectedExpensesContentViewModel.cs" />
     <Compile Include="ViewModels\UnexpectedExpensesViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\UnexpectedPage.xaml.cs">
       <DependentUpon>UnexpectedPage.xaml</DependentUpon>
