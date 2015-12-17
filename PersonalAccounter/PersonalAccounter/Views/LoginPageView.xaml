@@ -26,15 +26,10 @@
                     <StackPanel>
                         <TextBlock Text="Sign In With Email" Style="{StaticResource LoginFormLoginTextBlockStyle}" />
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" 
-                                Margin="0,50" 
-                                HorizontalAlignment="Center">
-                        <!--<TextBlock Text="Email Id" Style="{StaticResource LoginFormLoginTextBlockStyle}"/>-->
+                    <StackPanel Orientation="Vertical" Margin="0,50" HorizontalAlignment="Center">
                         <TextBox x:Name="id" Header="Email" Style="{StaticResource LoginFormLoginTextBoxStyle}"/>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" 
-                                HorizontalAlignment="Center">
-                        <!--<TextBlock Text="Password" Style="{StaticResource LoginFormLoginTextBlockStyle}"/>-->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                         <PasswordBox  x:Name="pwd" Header="Password" Style="{StaticResource LoginFormLoginTPasswordBoxStyle}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" 
