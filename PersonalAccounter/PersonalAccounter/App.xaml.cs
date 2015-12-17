@@ -1,4 +1,6 @@
-﻿namespace PersonalAccounter
+﻿using Parse;
+
+namespace PersonalAccounter
 {
     using PersonalAccounter.Views;
     using System;
@@ -20,14 +22,15 @@
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-        }
+            ParseClient.Initialize("vx2wMVhA45O7zqYBcyIbSIiJ2SIyUgSljeVPpsuJ", "wIMnh3n0p24hf0FQwmQZix7F11MEBg5swkMQRfJG");
+    }
 
-        /// <summary>
-        /// Invoked when the application is launched normally by the end user.  Other entry points
-        /// will be used such as when the application is launched to open a specific file.
-        /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+    /// <summary>
+    /// Invoked when the application is launched normally by the end user.  Other entry points
+    /// will be used such as when the application is launched to open a specific file.
+    /// </summary>
+    /// <param name="e">Details about the launch request and process.</param>
+    protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
