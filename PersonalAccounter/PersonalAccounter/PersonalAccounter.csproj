@@ -122,6 +122,8 @@
     <Compile Include="ViewModels\HouseHoldViewModel.cs" />
     <Compile Include="ViewModels\IContentViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
+    <Compile Include="ViewModels\LifestyleContentViewModel.cs" />
+    <Compile Include="ViewModels\LifestyleViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
