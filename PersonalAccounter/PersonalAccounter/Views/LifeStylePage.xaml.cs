@@ -1,16 +1,33 @@
-﻿namespace PersonalAccounter.Views
-{
-    using System.Collections.Generic;
-    using PersonalAccounter.ViewModels;
-    using PersonalAccounter.ViewModels.PersonalAccounter.ViewModels;
-    using Windows.UI.Xaml;
-    using Windows.UI.Xaml.Controls;
+﻿using PersonalAccounter.ViewModels;
+using PersonalAccounter.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using PersonalAccounter.ViewModels.PersonalAccounter.ViewModels;
 
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace PersonalAccounter.Views
+{
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class LifeStylePage : Page
     {
+        private LifeStylePage rootPage;
+
         public LifeStylePage()
         {
             this.InitializeComponent();
@@ -24,6 +41,25 @@
             };
 
             this.DataContext = new MainPageViewModel(contentViewModel);
+            //this.DataContext = new LifestyleContentViewModel();
+        }
+
+        private void AddItemClick(object sender, RoutedEventArgs e)
+        {
+            if (!AddItemPopUp.IsOpen)
+            {
+                PopUpParent.IsEnabled = false;
+                this.Opacity = .4;
+                container.IsEnabled = true;
+                AddItemPopUp.IsOpen = true;
+                AddItemPopUpStack.Width = Window.Current.Bounds.Width;
+            }
+            else
+            {
+                AddItemPopUp.IsOpen = false;
+                this.Opacity = 1.0;
+                PopUpParent.IsEnabled = true;
+            }
         }
 
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)

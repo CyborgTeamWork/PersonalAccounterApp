@@ -1,10 +1,11 @@
-﻿namespace PersonalAccounter.Models.Repository
+﻿using SQLite.Net.Async;
+
+namespace PersonalAccounter.Models.SQLite.Repository
 {
     using System;
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using SQLite.Net.Async;
 
     public interface IRepository<T> where T : class, new()
     {

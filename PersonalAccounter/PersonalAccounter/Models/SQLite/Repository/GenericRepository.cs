@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using PersonalAccounter.Models.SQLite.Repository;
 using SQLite.Net.Async;
 
 namespace PersonalAccounter.Models.Repository

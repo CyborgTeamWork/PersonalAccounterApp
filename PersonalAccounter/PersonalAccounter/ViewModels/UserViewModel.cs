@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Parse;
 using PersonalAccounter.Models;
-using PersonalAccounter.Models.Repository;
-using SQLite.Net.Platform.WinRT;
+using PersonalAccounter.Models.Parse;
+using PersonalAccounter.Models.SQLite.Repository;
 
 namespace PersonalAccounter.ViewModels
 {
@@ -24,18 +20,32 @@ namespace PersonalAccounter.ViewModels
             throw new NotImplementedException();
         }
 
-        public void RegisterUser(string username,string password)
+        public async void RegisterUser(string username,string password)
         {
             var newUser = new ParseUser
             {
                 Username = username,
                 Password = password
             };
-            newUser.SignUpAsync();
-            
+
+            await newUser.SignUpAsync();
             if (newUser.IsNew)
             {
-                newUser.SaveAsync();
+                //newUser.SaveAsync();
+                await ParseUser.LogInAsync(username, password);
+                var userId = newUser.ObjectId;
+                ParseObject.RegisterSubclass<BudgetParse>();
+                var  newBudget = ParseObject.Create<BudgetParse>();
+                newBudget = new BudgetParse
+                {
+                    Overall = 0.00,
+                    HouseholdExpectancy = 0.00,
+                    LifestyleExpectancy = 0.00,
+                    UnexpectedExpectancy = 0.00,
+                    Saved = 0.00,
+                };
+                newBudget.GetRelation<ParseUser>(userId);
+                await newBudget.SaveAsync();
             }
         }
     }
