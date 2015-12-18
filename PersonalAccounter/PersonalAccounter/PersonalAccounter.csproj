@@ -118,6 +118,8 @@
     <Compile Include="Models\SQLite\Wishlist.cs" />
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BudjetContentViewModel.cs" />
+    <Compile Include="ViewModels\BudjetViewModel.cs" />
     <Compile Include="ViewModels\ExpenseType.cs" />
     <Compile Include="ViewModels\HouseHoldContentViewModel.cs" />
     <Compile Include="ViewModels\HouseHoldViewModel.cs" />
@@ -139,8 +141,8 @@
     <Compile Include="Views\HouseHoldPage.xaml.cs">
       <DependentUpon>HouseHoldPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BasicPage.xaml.cs">
-      <DependentUpon>BasicPage.xaml</DependentUpon>
+    <Compile Include="Views\BudjetPage.xaml.cs">
+      <DependentUpon>BudjetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BasicSubPage.xaml.cs">
       <DependentUpon>BasicSubPage.xaml</DependentUpon>
@@ -232,7 +234,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\BasicPage.xaml">
+    <Page Include="Views\BudjetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

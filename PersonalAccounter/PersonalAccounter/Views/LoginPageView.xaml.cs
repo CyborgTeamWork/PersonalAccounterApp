@@ -45,15 +45,14 @@ namespace PersonalAccounter.Views
             }
         }
 
-        private void SignInClick(object sender, RoutedEventArgs e)
+        private async void SignInClick(object sender, RoutedEventArgs e)
         {
             string username = id.Text;
             string password = pwd.Password;
             userViewModel.RegisterUser(username, password);
-            this.Frame.Navigate(typeof(BasicPage));
+            this.Frame.Navigate(typeof(BudjetPage));
             var successMessage = new MessageDialog("You successfully signed in!");
-            successMessage.ShowAsync();
-
+            await successMessage.ShowAsync();
         }
     }
 }
