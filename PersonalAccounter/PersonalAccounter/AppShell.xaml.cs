@@ -56,8 +56,8 @@ namespace PersonalAccounter
                 new NavMenuItem()
                 {
                     Symbol = Symbol.ThreeBars,
-                    Label = "My Budjet",
-                    DestPage = typeof(BudjetPage)
+                    Label = "My Budget",
+                    DestPage = typeof(BudgetDisplayPage)
                 },
                 new NavMenuItem()
                 {

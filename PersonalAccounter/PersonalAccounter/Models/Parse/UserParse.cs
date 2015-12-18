@@ -6,6 +6,20 @@ namespace PersonalAccounter.Models.Parse
 {
     public class UserParse : ParseUser
     {
+        //[ParseFieldName("Username")]
+        //public string Username
+        //{
+        //    get { return this.GetProperty<string>(); }
+        //    set { this.SetProperty(value);}
+        //}
+
+        //[ParseFieldName("Password")]
+        //public string Password
+        //{
+        //    get { return this.GetProperty<string>(); }
+        //    set { this.SetProperty(value); }
+        //}
+
         [ParseFieldName("Budget")]
         public BudgetParse Budget
         {

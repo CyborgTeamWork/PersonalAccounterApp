@@ -50,7 +50,7 @@ namespace PersonalAccounter.Views
             string username = id.Text;
             string password = pwd.Password;
             userViewModel.RegisterUser(username, password);
-            this.Frame.Navigate(typeof(BudjetPage));
+            this.Frame.Navigate(typeof(BudgetDisplayPage));
             var successMessage = new MessageDialog("You successfully signed in!");
             await successMessage.ShowAsync();
         }

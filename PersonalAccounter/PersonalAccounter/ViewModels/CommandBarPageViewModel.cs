@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PersonalAccounter.Models;
 using PersonalAccounter.Models.Repository;
+using PersonalAccounter.Models.SQLite.Repository;
 
 namespace PersonalAccounter.ViewModels
 {

@@ -15,14 +15,10 @@ namespace PersonalAccounter.ViewModels
             //this.users = GenericRepostory<User>.Repostory;
         }
 
-        private void PullDataFromParse()
-        {
-            throw new NotImplementedException();
-        }
-
         public async void RegisterUser(string username,string password)
         {
-            var newUser = new ParseUser
+            var newUser = ParseUser.Create<UserParse>();
+            newUser = new UserParse
             {
                 Username = username,
                 Password = password
@@ -33,9 +29,7 @@ namespace PersonalAccounter.ViewModels
             {
                 //newUser.SaveAsync();
                 await ParseUser.LogInAsync(username, password);
-                var userId = newUser.ObjectId;
-                ParseObject.RegisterSubclass<BudgetParse>();
-                var  newBudget = ParseObject.Create<BudgetParse>();
+                var newBudget = ParseObject.Create<BudgetParse>();
                 newBudget = new BudgetParse
                 {
                     Overall = 0.00,
@@ -44,8 +38,10 @@ namespace PersonalAccounter.ViewModels
                     UnexpectedExpectancy = 0.00,
                     Saved = 0.00,
                 };
-                newBudget.GetRelation<ParseUser>(userId);
+
                 await newBudget.SaveAsync();
+                newUser.AddToList("Budget", newBudget);
+                await newUser.SaveAsync();
             }
         }
     }

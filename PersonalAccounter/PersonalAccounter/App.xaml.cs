@@ -1,4 +1,5 @@
 ﻿using Parse;
+using PersonalAccounter.Models.Parse;
 
 namespace PersonalAccounter
 {
@@ -23,7 +24,11 @@ namespace PersonalAccounter
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             ParseClient.Initialize("vx2wMVhA45O7zqYBcyIbSIiJ2SIyUgSljeVPpsuJ", "wIMnh3n0p24hf0FQwmQZix7F11MEBg5swkMQRfJG");
-    }
+            ParseObject.RegisterSubclass<CategoryParse>();
+            ParseObject.RegisterSubclass<BudgetParse>();
+            ParseObject.RegisterSubclass<ExpenseParse>();
+            ParseUser.RegisterSubclass<UserParse>();
+        }
 
     /// <summary>
     /// Invoked when the application is launched normally by the end user.  Other entry points

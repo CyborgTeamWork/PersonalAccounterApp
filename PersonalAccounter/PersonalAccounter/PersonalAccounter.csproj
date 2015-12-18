@@ -108,6 +108,9 @@
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Models\Parse\BudgetParse.cs" />
+    <Compile Include="Models\Parse\CategoryParse.cs" />
+    <Compile Include="Models\Parse\ExpenseParse.cs" />
+    <Compile Include="Models\Parse\UserParse.cs" />
     <Compile Include="Models\SQLite\Budget.cs" />
     <Compile Include="Models\SQLite\Category.cs" />
     <Compile Include="Models\SQLite\DbContext.cs" />
@@ -120,6 +123,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BudjetContentViewModel.cs" />
     <Compile Include="ViewModels\BudjetViewModel.cs" />
+    <Compile Include="ViewModels\CommandBarPageViewModel.cs" />
     <Compile Include="ViewModels\ExpenseType.cs" />
     <Compile Include="ViewModels\HouseHoldContentViewModel.cs" />
     <Compile Include="ViewModels\HouseHoldViewModel.cs" />
@@ -132,6 +136,12 @@
     <Compile Include="ViewModels\UnexpectedExpensesViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\BudgetDisplayPage.xaml.cs">
+      <DependentUpon>BudgetDisplayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BudjetPage.xaml.cs">
+      <DependentUpon>BudjetPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UnexpectedPage.xaml.cs">
       <DependentUpon>UnexpectedPage.xaml</DependentUpon>
     </Compile>
@@ -140,9 +150,6 @@
     </Compile>
     <Compile Include="Views\HouseHoldPage.xaml.cs">
       <DependentUpon>HouseHoldPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BudjetPage.xaml.cs">
-      <DependentUpon>BudjetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BasicSubPage.xaml.cs">
       <DependentUpon>BasicSubPage.xaml</DependentUpon>
@@ -218,6 +225,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BudgetDisplayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BudjetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,10 +248,6 @@
     <Page Include="Views\HouseHoldPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\BudjetPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BasicSubPage.xaml">
       <SubType>Designer</SubType>

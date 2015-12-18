@@ -31,7 +31,7 @@ namespace PersonalAccounter.Models.Parse
             set { this.SetProperty<double>(value); }
         }
 
-        [ParseFieldName("UnexpectedExpectancy")]
+        [ParseFieldName("UnexpectedExpency")]
         public double UnexpectedExpectancy
         {
             get { return this.GetProperty<double>(); }
@@ -44,12 +44,5 @@ namespace PersonalAccounter.Models.Parse
             get { return this.GetProperty<double>(); }
             set { this.SetProperty<double>(value); }
         }
-
-        //[ParseFieldName("UserId")]
-        //public ParseUser UserId
-        //{
-        //    get { return this.GetProperty<ParseUser>(); }
-        //    set { this.SetProperty(value);}
-        //}
     }
 }
