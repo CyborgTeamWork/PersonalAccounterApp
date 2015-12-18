@@ -40,7 +40,7 @@
                     <Border Style="{StaticResource sliderBorderBig}">
                             <StackPanel Orientation="Horizontal" >
                             <Slider Name="slBudjet" Value="{Binding TotalBudjet, Mode=TwoWay}"
-                                        Style="{StaticResource CostSliderStyle}"/>
+                                        Style="{StaticResource CostSliderStyleBigSum}"/>
                                 <TextBox Text="{Binding ElementName=slBudjet, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                         Style="{StaticResource CostSliderTexBox}" Height="20"/>
                             </StackPanel>
@@ -55,8 +55,8 @@
                             <StackPanel Orientation="Horizontal" >
                             <Slider Name="slHome" Value="{Binding HomeExpecations, Mode=TwoWay}"
                                     Style="{StaticResource CostSliderStyle}"/>
-                                <TextBox Text="{Binding ElementName=slHome, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                    Style="{StaticResource CostSliderTexBox}" Height="20"/>
+                            <TextBox Text="{Binding ElementName=slHome, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Height="20"
+                                    Style="{StaticResource CostSliderTexBox}"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
