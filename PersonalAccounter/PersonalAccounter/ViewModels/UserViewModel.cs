@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
-using Parse;
-using PersonalAccounter.Models;
-using PersonalAccounter.Models.Parse;
-using PersonalAccounter.Models.SQLite.Repository;
-
-namespace PersonalAccounter.ViewModels
+﻿namespace PersonalAccounter.ViewModels
 {
+    using System.Linq;
+    using Parse;
+    using Models;
+    using Models.Parse;
+    using Models.SQLite.Repository;
+
     public class UserViewModel
     {
         private IRepository<User> users;

@@ -1,23 +1,19 @@
-﻿using System;
-using System.IO;
-using Windows.Data.Xml.Dom;
-using Windows.Storage;
-using Windows.UI.Notifications;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Controls;
-using Parse;
-using PersonalAccounter.Models;
-using PersonalAccounter.Models.Repository;
-using PersonalAccounter.ViewModels;
-using SQLite.Net;
-using SQLite.Net.Async;
-using SQLite.Net.Platform.WinRT;
-using WinRTXamlToolkit.Controls.Extensions;
-
-namespace PersonalAccounter.Views
+﻿namespace PersonalAccounter.Views
 {
+    using System;
+    using Windows.UI.Popups;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Parse;
+    using PersonalAccounter.Models;
+    using PersonalAccounter.Models.Repository;
+    using PersonalAccounter.ViewModels;
+    using SQLite.Net;
+    using SQLite.Net.Async;
+    using SQLite.Net.Platform.WinRT;
+    using WinRTXamlToolkit.Controls.Extensions;
+    using PersonalAccounter.Helpers;
+
     public sealed partial class LoginPageView : Page
     {
         private UserViewModel userViewModel = new UserViewModel();
@@ -47,6 +43,13 @@ namespace PersonalAccounter.Views
 
         private async void SignInClick(object sender, RoutedEventArgs e)
         {
+            if (Validations.ValidateLoginForm(id.Text, pwd.Password))
+            {
+                var errormMessage = new MessageDialog("Wrong email/password!");
+                await errormMessage.ShowAsync();
+
+                return;
+            }
             string username = id.Text;
             string password = pwd.Password;
             userViewModel.RegisterUser(username, password);

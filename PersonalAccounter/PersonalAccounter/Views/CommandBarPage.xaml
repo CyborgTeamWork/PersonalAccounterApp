@@ -59,20 +59,14 @@
                                 Style="{StaticResource CostSliderTexBox}"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="4" Text="Short info: " 
-                               Margin="36,0,24,2"  
-                               Foreground="White"/>
+                    <TextBlock Grid.Row="4" Text="Short info: "  Margin="36,0,24,2"  Foreground="White"/>
                     <TextBox Name="tbDesc" Grid.Row="4" Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info" 
                              Style="{StaticResource ShortInfoTextBoxStyle}"/>
                 </Grid>
 
-                <Button Content="Save"
-                    Grid.Row="1"
-                    Style="{StaticResource LoginFormLoginButtonStyle}"
-                    Height="30" 
-                    Width="100" 
-                    CommandParameter="{StaticResource newHouseHoldExpense}"
-                    Command="{Binding ContentViewModel.Save}"/>
+                <Button Content="Save" Grid.Row="1" Style="{StaticResource LoginFormLoginButtonStyle}" Height="30" Width="100" 
+                        CommandParameter="{StaticResource newHouseHoldExpense}" Click="Button_Click"
+                        Command="{Binding ContentViewModel.Save}"/>
 
             </Grid>
         </Grid>

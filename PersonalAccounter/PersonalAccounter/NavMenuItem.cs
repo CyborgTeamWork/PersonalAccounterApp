@@ -1,8 +1,8 @@
-﻿using System;
-using Windows.UI.Xaml.Controls;
-
-namespace PersonalAccounter
+﻿namespace PersonalAccounter
 {
+    using System;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// Data to represent an item in the nav menu.
     /// </summary>
