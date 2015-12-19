@@ -48,7 +48,7 @@
                     <!--User input-->
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="GetPreviewFrameButton" Content="GetPreviewFrameAsync" Tapped="GetPreviewFrameButton_Tapped" Margin="10" IsEnabled="True"/>
+                            <Button Name="GetPreviewFrameButton" Content="Take Your Snapshot" Tapped="GetPreviewFrameButton_Tapped" Margin="10" IsEnabled="True"/>
                             <TextBlock Name="FrameInfoTextBlock" VerticalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
