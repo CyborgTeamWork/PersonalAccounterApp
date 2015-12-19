@@ -45,9 +45,10 @@ namespace PersonalAccounter.ViewModels
                     UnexpectedExpectancy = 0.00,
                     Saved = 0.00,
                 };
-                newBudget.Add("UserId", newUser);
+                newUser.Add("Budget", newBudget);
+                await newUser.SaveAsync();
                 await newBudget.SaveAsync();
-                
+
                 //newUser.AddToList("Budget", newBudget);
                 //await newUser.SaveAsync();
             }
