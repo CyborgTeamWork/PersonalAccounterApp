@@ -9,7 +9,7 @@
     xmlns:viewModels="using:PersonalAccounter.ViewModels"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Style="{StaticResource MainGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
@@ -20,38 +20,26 @@
                 <Grid.Resources>
                     <viewModels:HouseHoldViewModel x:Key="newHouseHoldExpense"/>
                 </Grid.Resources>
+                
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="150" />
                     <RowDefinition Height="350" />
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Style="{StaticResource MainGridStyle}">
 
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                    <CaptureElement Name="PreviewControl" Stretch="Fill" Height="150" Width="200" />
 
-                        <!--Camera preview-->
-                        <CaptureElement Name="PreviewControl" Stretch="Uniform" Grid.Column="0"/>
-
-                        <!--Captured preview frame image-->
-                        <Image Name="PreviewFrameImage" Grid.Column="1"/>
-                    </Grid>
+                    <!--Captured preview frame image-->
+                    <Image Name="PreviewFrameImage" Height="150" Width="200" />
 
                     <!--User input-->
-                    <StackPanel Grid.Row="1">
+                    <Grid>
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="GetPreviewFrameButton" Content="Take Your Snapshot" Tapped="GetPreviewFrameButton_Tapped" Margin="10" IsEnabled="True"/>
-                            <TextBlock Name="FrameInfoTextBlock" VerticalAlignment="Center"/>
+<!--<TextBlock Name="FrameInfoTextBlock" VerticalAlignment="Center"/>-->
                         </StackPanel>
-                    </StackPanel>
+                    </Grid>
                 </Grid>
 
                 <Grid Grid.Row="1" DataContext="{StaticResource newHouseHoldExpense}" Height="280">
@@ -62,34 +50,43 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Add new expense" Style="{StaticResource TitleExpenseTextBlockStyle}"/>
+                    <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Create new expense" Style="{StaticResource TitleExpenseTextBlockStyle}"/>
 
-                    <TextBlock Grid.Row="1" Text="Expense name: " Style="{StaticResource InputItemTextBlockStyle}"/>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="3"  Text="Add Expense name: " Style="{StaticResource InputItemTextBlockStyle}"/>
                     <TextBox Name="tbName"
                              PlaceholderText="Add Expense Name" 
-                             Grid.Row="1" Text="{Binding Name, Mode=TwoWay}"
+                             Grid.Row="1"  Grid.ColumnSpan="3" Text="{Binding Name, Mode=TwoWay}"
                              Style="{StaticResource InputItemTextBoxStyle}"/>
 
-                    <TextBlock Grid.Row="2" Text="Image URL: " 
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="3"  Text="Add Image URL: " 
                                Style="{StaticResource InputItemTextBlockStyle}"/>
                     <TextBox Name="tbImage" 
                              Text="{Binding ImageUrl, Mode=TwoWay}" 
-                             Grid.Row="2" 
+                             Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="1" 
                              PlaceholderText="Add Expense Image URL"
-                             Style="{StaticResource InputItemTextBoxStyle}"/>
-
-                    <TextBlock Grid.Row="3" Text="Cost: " 
+                             Style="{StaticResource InputItemTextBoxStyle}" />
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="3"  Text=" Or Use Your Own " 
                                Style="{StaticResource InputItemTextBlockStyle}"/>
-                    <StackPanel Orientation="Horizontal" Grid.Row="3" Height="30" Margin="36,2,24,0"  >
+                    <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Name="GetPreviewFrameButton" Content="Take Your Snapshot" Tapped="GetPreviewFrameButton_Tapped" Margin="10" IsEnabled="True"/>
+
+
+                    <TextBlock Grid.Row="3"  Grid.ColumnSpan="3"  Text="Cost: " 
+                               Style="{StaticResource InputItemTextBlockStyle}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3"  Grid.ColumnSpan="3" Height="30" Margin="36,2,24,0"  >
                         <Slider Name="tbCost" Value="{Binding Cost, Mode=TwoWay}"
                                 Style="{StaticResource CostSliderStyle}"/>
                         <TextBox Text="{Binding ElementName=tbCost, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                 Style="{StaticResource CostSliderTexBox}"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="4" Text="Short info: "  Margin="36,0,24,2"  Foreground="White"/>
-                    <TextBox Name="tbDesc" Grid.Row="4" Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info" 
+                    <TextBlock Grid.Row="4"  Grid.ColumnSpan="3" Text="Short info: "  Margin="36,0,24,2"  Foreground="White"/>
+                    <TextBox Name="tbDesc" Grid.Row="4" Grid.ColumnSpan="3"  Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info" 
                              Style="{StaticResource ShortInfoTextBoxStyle}"/>
                 </Grid>
 
