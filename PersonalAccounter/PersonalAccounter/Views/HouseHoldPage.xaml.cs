@@ -1,9 +1,9 @@
 ﻿namespace PersonalAccounter.Views
 {
-    using PersonalAccounter.ViewModels;
     using System.Collections.Generic;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
+    using PersonalAccounter.ViewModels;
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -35,7 +35,6 @@
 
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
         {
-            // some real delete action to be added 
         }
     }
 }

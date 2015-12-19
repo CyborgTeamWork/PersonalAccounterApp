@@ -52,40 +52,24 @@
                             <TextBlock Grid.Row="1" Text="Expense name: " Style="{StaticResource InputItemTextBlockStyle}"/>
                             <TextBox Name="tbName"
                              PlaceholderText="Add Expense Name"
-                             Grid.Row="1" Text="{Binding Name, Mode=TwoWay}"
-                             Style="{StaticResource InputItemTextBoxStyle}"/>
+                             Grid.Row="1" Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource InputItemTextBoxStyle}"/>
 
-                            <TextBlock Grid.Row="2" Text="Image URL: "
-                               Style="{StaticResource InputItemTextBlockStyle}"/>
-                            <TextBox Name="tbImage"
-                             Text="{Binding ImageUrl, Mode=TwoWay}"
-                             Grid.Row="2"
-                             PlaceholderText="Add Expense Image URL"
-                             Style="{StaticResource InputItemTextBoxStyle}"/>
+                            <TextBlock Grid.Row="2" Text="Image URL: " Style="{StaticResource InputItemTextBlockStyle}"/>
+                            <TextBox Name="tbImage" Text="{Binding ImageUrl, Mode=TwoWay}" Grid.Row="2"
+                             PlaceholderText="Add Expense Image URL" Style="{StaticResource InputItemTextBoxStyle}"/>
 
-                            <TextBlock Grid.Row="3" Text="Cost: "
-                               Style="{StaticResource InputItemTextBlockStyle}"/>
-                            <StackPanel Orientation="Horizontal" Grid.Row="3" Height="30" Margin="36,2,24,0"  >
-                                <Slider Name="tbCost" Value="{Binding Cost, Mode=TwoWay}"
-                                Style="{StaticResource CostSliderStyle}"/>
-                                <TextBox Text="{Binding ElementName=tbCost, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                Style="{StaticResource CostSliderTexBox}"/>
+                            <TextBlock Grid.Row="3" Text="Cost: " Style="{StaticResource InputItemTextBlockStyle}"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" Height="30" Margin="36,2,24,0">
+                                <Slider Name="tbCost" Value="{Binding Cost, Mode=TwoWay}" Style="{StaticResource CostSliderStyle}"/>
+                                <TextBox Text="{Binding ElementName=tbCost, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CostSliderTexBox}"/>
                             </StackPanel>
 
-                            <TextBlock Grid.Row="4" Text="Short info: "
-                               Margin="36,0,24,2"  
-                               Foreground="White"/>
-                            <TextBox Name="tbDesc" Grid.Row="4" Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info"
-                             Style="{StaticResource ShortInfoTextBoxStyle}"/>
+                            <TextBlock Grid.Row="4" Text="Short info: " Margin="36,0,24,2"  Foreground="White"/>
+                            <TextBox Name="tbDesc" Grid.Row="4" Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info" Style="{StaticResource ShortInfoTextBoxStyle}"/>
                         </Grid>
 
-                        <Button Content="Save"
-                    Grid.Row="1"
-                    Style="{StaticResource LoginFormLoginButtonStyle}"
-                    Height="30"
-                    Width="100"
-                    CommandParameter="{StaticResource newLifeStyleExpense}"
-                    Command="{Binding ContentViewModel.Save}"/>
+                        <Button Content="Save" Grid.Row="1" Style="{StaticResource LoginFormLoginButtonStyle}" Height="30" Width="100"
+                                CommandParameter="{StaticResource newLifeStyleExpense}" Command="{Binding ContentViewModel.Save}"/>
 
                     </Grid>
                 </StackPanel>
@@ -125,10 +109,10 @@
                                 <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Description}"  Margin="0,10,0,0" Style="{StaticResource ShowItemNameTextBlock}" TextWrapping="Wrap"/>
 
                                 <Button Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Left" Content="Delete" Margin="0,10,0,0" CommandParameter="{Binding}"
-                            Command="{Binding ElementName=lifestyleExpensesPage, Path=DataContext.ContentViewModel.Delete}"/>
+                                        Command="{Binding ElementName=lifestyleExpensesPage, Path=DataContext.ContentViewModel.Delete}"/>
 
                         <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Edit" Margin="0,10,0,0" CommandParameter="{Binding}"
-                            Command="{Binding ElementName=lifestyleExpensesPage, Path=DataContext.ContentViewModel.Edit}"/>
+                                Command="{Binding ElementName=lifestyleExpensesPage, Path=DataContext.ContentViewModel.Edit}"/>
 
                     </Grid>
                 </StackPanel>

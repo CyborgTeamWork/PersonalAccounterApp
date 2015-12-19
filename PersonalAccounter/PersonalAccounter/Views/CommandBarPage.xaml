@@ -21,11 +21,40 @@
                     <viewModels:HouseHoldViewModel x:Key="newHouseHoldExpense"/>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
                     <RowDefinition Height="350" />
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" DataContext="{StaticResource newHouseHoldExpense}" Height="280">
+                <Grid Grid.Row="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Camera preview-->
+                        <CaptureElement Name="PreviewControl" Stretch="Uniform" Grid.Column="0"/>
+
+                        <!--Captured preview frame image-->
+                        <Image Name="PreviewFrameImage" Grid.Column="1"/>
+                    </Grid>
+
+                    <!--User input-->
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Name="GetPreviewFrameButton" Content="Take Your Snapshot" Tapped="GetPreviewFrameButton_Tapped" Margin="10" IsEnabled="True"/>
+                            <TextBlock Name="FrameInfoTextBlock" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1" DataContext="{StaticResource newHouseHoldExpense}" Height="280">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.5*" />
                         <RowDefinition Height="1*" />
@@ -59,22 +88,18 @@
                                 Style="{StaticResource CostSliderTexBox}"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="4" Text="Short info: " 
-                               Margin="36,0,24,2"  
-                               Foreground="White"/>
+                    <TextBlock Grid.Row="4" Text="Short info: "  Margin="36,0,24,2"  Foreground="White"/>
                     <TextBox Name="tbDesc" Grid.Row="4" Text="{Binding Description, Mode=TwoWay}" PlaceholderText="Add Short Info" 
                              Style="{StaticResource ShortInfoTextBoxStyle}"/>
                 </Grid>
 
-                <Button Content="Save"
-                    Grid.Row="1"
-                    Style="{StaticResource LoginFormLoginButtonStyle}"
-                    Height="30" 
-                    Width="100" 
-                    CommandParameter="{StaticResource newHouseHoldExpense}"
-                    Command="{Binding ContentViewModel.Save}"/>
+                <Button Content="Save" Grid.Row="2" Style="{StaticResource LoginFormLoginButtonStyle}" Height="30" Width="100" 
+                        CommandParameter="{StaticResource newHouseHoldExpense}" Click="Button_Click"
+                        Command="{Binding ContentViewModel.Save}"/>
 
             </Grid>
+
+
         </Grid>
         
         <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
@@ -87,7 +112,7 @@
                     <Flyout x:Name="myFlyout">
                         <StackPanel>
                             <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="The current selection will be deleted!" Margin="0,0,0,12" />
-                            <Button Click="DeleteConfirmation_Click" Content="Yes, delete current item" />
+                            <Button Content="Yes, delete current item" />
                         </StackPanel>
                     </Flyout>
                 </AppBarButton.Flyout>

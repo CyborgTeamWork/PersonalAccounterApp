@@ -20,9 +20,7 @@
         <ContentControl x:Name="container"  
                         Margin="0,120,0,100">
             <Popup x:Name="logincontrol1" IsOpen="False">
-                <StackPanel x:Name="pop" 
-                            Orientation="Vertical" 
-                            Background="#ff7f27">
+                <StackPanel x:Name="pop" Orientation="Vertical" Background="#ff7f27">
                     <StackPanel>
                         <TextBlock Text="Sign In With Email" Style="{StaticResource LoginFormLoginTextBlockStyle}" />
                     </StackPanel>
@@ -32,27 +30,15 @@
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                         <PasswordBox  x:Name="pwd" Header="Password" Style="{StaticResource LoginFormLoginTPasswordBoxStyle}"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" 
-                                Margin="0,50" 
-                                HorizontalAlignment="Center">
-                        <Button x:Name="loginclick" 
-                                Foreground="Wheat"  
-                                Width="100"
-                                Content="Login" 
-                                Click ="SignInClick"></Button>
-                        <Button x:Name="cancel" Click="Button_Toggle_Click_Login"  
-                                Foreground="Wheat"  
-                                Width="100"
-                                Content="Cancel" ></Button>
+                    <StackPanel Orientation="Horizontal" Margin="0,50" HorizontalAlignment="Center">
+                        <Button x:Name="loginclick" Foreground="Wheat"  Width="100" Content="Login" Click ="SignInClick"></Button>
+                        <Button x:Name="cancel" Click="Button_Toggle_Click_Login"  Foreground="Wheat"  Width="100" Content="Cancel" ></Button>
                     </StackPanel>
                 </StackPanel>
             </Popup>
         </ContentControl>
 
-        <ContentControl x:Name="parent"
-                        Grid.Column="1" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center">
+        <ContentControl x:Name="parent" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid Background="#ff7f27"  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -63,8 +49,7 @@
                     <Run Text="Welcome to"/><LineBreak/>
                     <Run FontSize="32" Text="ACCOUNTER"/><LineBreak/>
                 </TextBlock>
-                <Button Grid.Row="1" Content="Sign in" Style="{StaticResource LoginFormLoginButtonStyle}"
-                        Click="Button_Toggle_Click_Login">
+                <Button Grid.Row="1" Content="Sign in" Style="{StaticResource LoginFormLoginButtonStyle}" Click="Button_Toggle_Click_Login">
                 </Button>
             </Grid>
         </ContentControl>

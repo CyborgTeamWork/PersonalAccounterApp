@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Storage;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
-using PersonalAccounter.Controls;
-using PersonalAccounter.Views;
-using PersonalAccounter.Models;
-using SQLite.Net;
-using SQLite.Net.Async;
-using SQLite.Net.Platform.WinRT;
-
-namespace PersonalAccounter
+﻿namespace PersonalAccounter
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Windows.Foundation;
+    using Windows.UI.Xaml.Automation;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Navigation;
+    using PersonalAccounter.Controls;
+    using PersonalAccounter.Views;
+
     /// <summary>
     /// The "chrome" layer of the app that provides top-level navigation with
     /// proper keyboarding navigation.

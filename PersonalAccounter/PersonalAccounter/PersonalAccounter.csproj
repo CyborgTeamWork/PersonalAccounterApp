@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
+    <Compile Include="Helpers\Validations.cs" />
     <Compile Include="Models\Parse\BudgetParse.cs" />
     <Compile Include="Models\Parse\CategoryParse.cs" />
     <Compile Include="Models\Parse\ExpenseParse.cs" />
