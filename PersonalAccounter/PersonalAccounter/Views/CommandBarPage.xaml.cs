@@ -118,7 +118,7 @@
             _displayOrientation = _displayInformation.CurrentOrientation;
             _displayInformation.OrientationChanged += DisplayInformation_OrientationChanged;
 
-            await InitializeCameraAsync();
+           // await InitializeCameraAsync();
         }
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)

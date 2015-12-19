@@ -71,7 +71,7 @@
 
         <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
 
-            <AppBarButton Icon="Add" Label="Add">
+            <AppBarButton Icon="Add" Label="Add" Click ="NavigateToAddViewClick">
             </AppBarButton>
 
             <AppBarButton Icon="Sort" Label="Sort">

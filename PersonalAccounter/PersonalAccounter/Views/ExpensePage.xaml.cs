@@ -33,6 +33,11 @@
             //this.DataContext = new MainPageViewModel(contentViewModel);
         }
 
+        public void NavigateToAddViewClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (CommandBarPage));
+        }
+
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
         {
         }
