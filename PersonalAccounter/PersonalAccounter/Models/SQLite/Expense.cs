@@ -15,7 +15,7 @@ namespace PersonalAccounter.Models
 
         public string Description { get; set; }
 
-        public float Coast { get; set; }
+        public double Coast { get; set; }
 
         public Category Category { get; set; }
 

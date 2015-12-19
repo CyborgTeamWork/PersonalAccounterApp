@@ -32,7 +32,7 @@
                 {
                     Symbol = Symbol.Contact,
                     Label = "My Expenses",
-                    DestPage = typeof(HouseHoldPage)
+                    DestPage = typeof(ExpensePage)
                 },
                 //new NavMenuItem()
                 //{

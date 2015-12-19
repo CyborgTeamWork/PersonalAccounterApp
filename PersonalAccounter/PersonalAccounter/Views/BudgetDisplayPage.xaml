@@ -52,8 +52,6 @@
 
             <AppBarSeparator/>
 
-            <!--<AppBarButton Icon="Favorite" Label="Budget Details" Click="MyBudgetDetailsClick"/>-->
-
             <CommandBar.Content>
                 <controls:PageHeader>
                     <controls:PageHeader.HeaderContent>

@@ -1,17 +1,17 @@
 ﻿<Page
-    x:Class="PersonalAccounter.Views.UnexpectedPage"
+    x:Class="PersonalAccounter.Views.ExpensePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PersonalAccounter.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ctl="using:PersonalAccounter.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Name="unexpectedExpensesPage"
+    xmlns:viewModels="using:PersonalAccounter.ViewModels"
+    Name="expensePage"
     mc:Ignorable="d">
 
-
     <Page.Resources>
-        <DataTemplate x:Key="unexpectedxpenseItemTemplate">
+        <DataTemplate x:Key="ExpenseItemTemplate">
 
             <ScrollViewer VerticalScrollMode="Auto"  VerticalScrollBarVisibility="Auto">
                 <StackPanel>
@@ -26,7 +26,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="130"/>
                             <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions >
+                        </Grid.ColumnDefinitions>
 
                         <Ellipse Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" x:Name="ResizeView" Width="120" Height="120" Margin="6,0,6,0">
                             <Ellipse.Fill>
@@ -36,18 +36,18 @@
 
                         <TextBlock Grid.Row="0" Grid.Column="1"  Text=" Cost: " Style="{StaticResource ShowItemInfoTextBlock}" TextWrapping="Wrap" />
                         <TextBlock Grid.Row="0" Grid.Column="1"  Text="{Binding Cost}" Style="{StaticResource ShowItemCostTextBlock}" Margin="0,10,0,0" TextWrapping="Wrap"/>
-
+                                                            
                         <TextBlock Grid.Row="1" Grid.Column="1"  Text=" Name: " Style="{StaticResource ShowItemInfoTextBlock}" TextWrapping="Wrap" />
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource ShowItemNameTextBlock}"  Margin="0,10,0,0" TextWrapping="Wrap"/>
-
+                                                            
                         <TextBlock Grid.Row="2" Grid.Column="1" Text=" Info: " Style="{StaticResource ShowItemInfoTextBlock}" TextWrapping="Wrap" />
                         <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Description}"  Margin="0,10,0,0" Style="{StaticResource ShowItemNameTextBlock}" TextWrapping="Wrap"/>
 
                         <Button Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Left" Content="Delete" Margin="0,10,0,0" CommandParameter="{Binding}"
-                            Command="{Binding ElementName=unexpectedExpensesPage, Path=DataContext.ContentViewModel.Delete}"/>
+                            Command="{Binding ElementName=houseHoldPage, Path=DataContext.ContentViewModel.Delete}"/>
 
                         <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Edit" Margin="0,10,0,0" CommandParameter="{Binding}"
-                            Command="{Binding ElementName=unexpectedExpensesPage, Path=DataContext.ContentViewModel.Edit}"/>
+                            Command="{Binding ElementName=houseHoldPage, Path=DataContext.ContentViewModel.Edit}"/>
 
                     </Grid>
                 </StackPanel>
@@ -64,8 +64,8 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <ListBox ItemsSource="{Binding ContentViewModel.UnexpectedExpenses}" 
-                     ItemTemplate="{StaticResource unexpectedxpenseItemTemplate}"
+            <ListBox ItemsSource="{Binding ContentViewModel.HouseHoldExpenses}" 
+                     ItemTemplate="{StaticResource ExpenseItemTemplate}"
                      Background="#ff7f27"/>
         </Grid>
 
@@ -85,7 +85,7 @@
             <CommandBar.Content>
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
-                        <TextBlock Text="LifeStyle Expenses PAGE" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                        <TextBlock Text="HouseHold Expenses Page" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
                     </ctl:PageHeader.HeaderContent>
                 </ctl:PageHeader>
             </CommandBar.Content>
@@ -93,4 +93,4 @@
         </CommandBar>
 
     </Grid>
-</Page>
+</Page>    

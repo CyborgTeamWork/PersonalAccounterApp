@@ -57,31 +57,31 @@
             Application.Current.Suspending += Application_Suspending;
             Application.Current.Resuming += Application_Resuming;
 
-            this.DataContext = new CommandBarPageViewModel();
+            //this.DataContext = new CommandBarPageViewModel();
         }
 
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
         {
-            myFlyout.Hide();
+            //myFlyout.Hide();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Validations.ValidateString(this.tbName.Text, 2, 50))
-            {
-                var errormMessage = new MessageDialog("Name must be within 2 and 50 alphabetic symbols!");
-                await errormMessage.ShowAsync();
+            //if (Validations.ValidateString(this.tbName.Text, 2, 50))
+            //{
+            //    var errormMessage = new MessageDialog("Name must be within 2 and 50 alphabetic symbols!");
+            //    await errormMessage.ShowAsync();
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (Validations.ValidateString(this.tbDesc.Text, 0, 100))
-            {
-                var errormMessage = new MessageDialog("Description can't be more then 100 symbols!");
-                await errormMessage.ShowAsync();
+            //if (Validations.ValidateString(this.tbDesc.Text, 0, 100))
+            //{
+            //    var errormMessage = new MessageDialog("Description can't be more then 100 symbols!");
+            //    await errormMessage.ShowAsync();
 
-                return;
-            }
+            //    return;
+            //}
         }
 
         private async void Application_Suspending(object sender, SuspendingEventArgs e)
@@ -263,8 +263,8 @@
             _systemMediaControls.PropertyChanged += SystemMediaControls_PropertyChanged;
 
             // Set the preview source in the UI and mirror it if necessary
-            PreviewControl.Source = _mediaCapture;
-            PreviewControl.FlowDirection = _mirroringPreview ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+            //PreviewControl.Source = _mediaCapture;
+            //PreviewControl.FlowDirection = _mirroringPreview ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
             // Start the preview
             await _mediaCapture.StartPreviewAsync();
@@ -312,7 +312,7 @@
             // Use the dispatcher because this method is sometimes called from non-UI threads
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                PreviewControl.Source = null;
+                //PreviewControl.Source = null;
 
                 // Allow the device to sleep now that the preview is stopped
                 _displayRequest.RequestRelease();
@@ -343,7 +343,7 @@
                 await sbSource.SetBitmapAsync(previewFrame);
 
                 // Display it in the Image control
-                PreviewFrameImage.Source = sbSource;
+                //PreviewFrameImage.Source = sbSource;
 
                 await SaveSoftwareBitmapAsync(previewFrame);
             }
@@ -372,7 +372,7 @@
                 }
 
                 // Clear the image
-                PreviewFrameImage.Source = null;
+                //PreviewFrameImage.Source = null;
             }
         }
 

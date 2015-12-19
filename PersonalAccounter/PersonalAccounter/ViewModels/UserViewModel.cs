@@ -1,56 +1,29 @@
 ﻿namespace PersonalAccounter.ViewModels
 {
-    using System.Linq;
-    using Parse;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Helpers.ViewModelHelpers;
     using Models;
-    using Models.Parse;
-    using Models.SQLite.Repository;
 
     public class UserViewModel
     {
-        private IRepository<User> users;
+        private UserViewModelHelper users;
 
         public UserViewModel()
         {
             //this.users = GenericRepostory<User>.Repostory;
+            this.users = new UserViewModelHelper();
+
         }
 
-        public async void RegisterUser(string username,string password)
+        public async void Register(string username,string password)
         {
-            var newUser = ParseUser.Create<UserParse>();
-            newUser = new UserParse
-            {
-                Username = username,
-                Password = password
-            };
+            users.RegisterUser(username, password);
+        }
 
-            await newUser.SignUpAsync();
-            if (newUser.IsNew)
-            {
-                //newUser.SaveAsync();
-                await ParseUser.LogInAsync(username, password);
-                var newBudget = ParseObject.Create<BudgetParse>();
-
-                var userFromParseCom = ParseObject.GetQuery("User");
-                var result = await userFromParseCom.FindAsync();
-                var normalResult = result.ToList();
-                normalResult.Add(newBudget);
-
-                newBudget = new BudgetParse
-                {
-                    Overall = 0.00,
-                    HouseholdExpectancy = 0.00,
-                    LifestyleExpectancy = 0.00,
-                    UnexpectedExpectancy = 0.00,
-                    Saved = 0.00,
-                };
-                newUser.Add("Budget", newBudget);
-                await newUser.SaveAsync();
-                await newBudget.SaveAsync();
-
-                //newUser.AddToList("Budget", newBudget);
-                //await newUser.SaveAsync();
-            }
+        public async Task<List<User>> GetUsers()
+        {
+           return await this.users.Get();
         }
     }
 }

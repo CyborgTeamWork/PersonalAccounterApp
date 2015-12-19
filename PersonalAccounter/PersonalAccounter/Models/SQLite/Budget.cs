@@ -25,6 +25,6 @@ namespace PersonalAccounter.Models.SQLite
         public double Saved { get; set; }
 
         [ForeignKey("")]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

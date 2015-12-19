@@ -13,21 +13,22 @@
     {
         public BudgetDisplayPage()
         {
+
             this.InitializeComponent();
 
-            List<Tuple<string, int>> myList = new List<Tuple<string, int>>()
-    {
-        new Tuple<string, int>("Household", 20),
-        new Tuple<string, int>("Lifestyle", 30),
-        new Tuple<string, int>("Unexpected", 50)
-    };
+            List<Tuple<string, double>> myList = new List<Tuple<string, double>>()
+            {
+                new Tuple<string, double>("Household", 20),
+                new Tuple<string, double>("Lifestyle", 30),
+                new Tuple<string, double>("Unexpected", 50)
+            };
 
             (MyExpenses.Series[0] as PieSeries).ItemsSource = myList;
         }
 
         private void MyBudgetSettingClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BudjetPage));
+            this.Frame.Navigate(typeof(BudgetPage));
         }
     }
 }

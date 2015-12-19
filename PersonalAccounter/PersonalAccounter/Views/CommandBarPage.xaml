@@ -18,7 +18,7 @@
         <Grid Grid.Row="0">
             <Grid Name="panelAdd" Style="{StaticResource MainGridStyle}">
                 <Grid.Resources>
-                    <viewModels:HouseHoldViewModel x:Key="newHouseHoldExpense"/>
+                    <viewModels:ExpenseViewModel x:Key="newHouseHoldExpense"/>
                 </Grid.Resources>
                 
                 <Grid.RowDefinitions>
@@ -31,13 +31,12 @@
 
                     <CaptureElement Name="PreviewControl" Stretch="Fill" Height="150" Width="200" />
 
-                    <!--Captured preview frame image-->
+          
                     <Image Name="PreviewFrameImage" Height="150" Width="200" />
 
-                    <!--User input-->
                     <Grid>
                         <StackPanel Orientation="Horizontal">
-<!--<TextBlock Name="FrameInfoTextBlock" VerticalAlignment="Center"/>-->
+<TextBlock Name="FrameInfoTextBlock" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -127,7 +126,7 @@
             <CommandBar.Content>
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
-                        <TextBlock Text="COMMANDBAR PAGE" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                        <TextBlock Text="Add New Expense" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
                     </ctl:PageHeader.HeaderContent>
                 </ctl:PageHeader>
             </CommandBar.Content>

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="PersonalAccounter.Views.BudjetPage"
+    x:Class="PersonalAccounter.Views.BudgetPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PersonalAccounter.Views"
@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-
+        
         <Grid x:Name="budgetContainer" Grid.Row="0" Style="{StaticResource MainGridStyle}">
 
             <Grid.RowDefinitions>
@@ -30,8 +30,12 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-                <TextBlock Style="{StaticResource MainTitletyle}" Text="My Budjet"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
+                <ctl:PageHeader>
+                    <ctl:PageHeader.HeaderContent>
+                        <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="My Budget"/>
+                    </ctl:PageHeader.HeaderContent>
+                </ctl:PageHeader>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Padding="0,24,0,24">
@@ -97,16 +101,16 @@
 
         <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
 
-            <AppBarButton Icon="Setting" Label="Set My Budget" Click="MyBudjetSettingClick"/>
+            <AppBarButton Icon="Save" Label="Save My Budget" Click="MyBudgetSettingClick"/>
 
             <AppBarSeparator/>
 
-            <AppBarButton Icon="Favorite" Label="Budget Details" Click="MyBudjetDtailsClick"/>
+            <AppBarButton Icon="Cancel" Label="Cancel" Click="MyBudgetCancelClick"/>
 
             <CommandBar.Content>
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
-                        <TextBlock Text="My Budjet" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                        <TextBlock Text="My Budget" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
                     </ctl:PageHeader.HeaderContent>
                 </ctl:PageHeader>
             </CommandBar.Content>

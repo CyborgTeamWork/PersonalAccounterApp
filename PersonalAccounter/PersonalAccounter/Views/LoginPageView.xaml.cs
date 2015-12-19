@@ -52,7 +52,9 @@
             }
             string username = id.Text;
             string password = pwd.Password;
-            userViewModel.RegisterUser(username, password);
+            userViewModel.Register(username, password);
+            var usersTask = userViewModel.GetUsers();
+            var usersResult = usersTask.Result;
             this.Frame.Navigate(typeof(BudgetDisplayPage));
             var successMessage = new MessageDialog("You successfully signed in!");
             await successMessage.ShowAsync();

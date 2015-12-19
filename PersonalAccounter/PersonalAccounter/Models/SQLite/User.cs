@@ -8,7 +8,7 @@ namespace PersonalAccounter.Models
         [AutoIncrement]
         public int Id { get; set; }
 
-        public string WindowsId { get; set; }
+        public string Username { get; set; }
 
         public string Password { get; set; }
 

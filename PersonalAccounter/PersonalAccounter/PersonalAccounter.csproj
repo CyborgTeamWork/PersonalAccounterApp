@@ -106,8 +106,10 @@
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\Validations.cs" />
+    <Compile Include="Helpers\ViewModelHelpers\BudgetViewModelHelpers.cs" />
+    <Compile Include="Helpers\ViewModelHelpers\ExpenseViewModelHelper.cs" />
+    <Compile Include="Helpers\ViewModelHelpers\UserViewModelHelper.cs" />
     <Compile Include="Models\Parse\BudgetParse.cs" />
     <Compile Include="Models\Parse\CategoryParse.cs" />
     <Compile Include="Models\Parse\ExpenseParse.cs" />
@@ -122,32 +124,20 @@
     <Compile Include="Models\SQLite\Wishlist.cs" />
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BudjetContentViewModel.cs" />
-    <Compile Include="ViewModels\BudjetViewModel.cs" />
-    <Compile Include="ViewModels\CommandBarPageViewModel.cs" />
-    <Compile Include="ViewModels\ExpenseType.cs" />
-    <Compile Include="ViewModels\HouseHoldContentViewModel.cs" />
-    <Compile Include="ViewModels\HouseHoldViewModel.cs" />
+    <Compile Include="ViewModels\BudgetViewModel.cs" />
+    <Compile Include="ViewModels\ExpenseViewModel.cs" />
     <Compile Include="ViewModels\IContentViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
-    <Compile Include="ViewModels\LifestyleContentViewModel.cs" />
-    <Compile Include="ViewModels\LifestyleViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\UnexpectedExpensesContentViewModel.cs" />
-    <Compile Include="ViewModels\UnexpectedExpensesViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\BudgetDisplayPage.xaml.cs">
       <DependentUpon>BudgetDisplayPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BudjetPage.xaml.cs">
-      <DependentUpon>BudjetPage.xaml</DependentUpon>
+    <Compile Include="Views\BudgetPage.xaml.cs">
+      <DependentUpon>BudgetPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UnexpectedPage.xaml.cs">
-      <DependentUpon>UnexpectedPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HouseHoldPage.xaml.cs">
-      <DependentUpon>HouseHoldPage.xaml</DependentUpon>
+    <Compile Include="Views\ExpensePage.xaml.cs">
+      <DependentUpon>ExpensePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CommandBarPage.xaml.cs">
       <DependentUpon>CommandBarPage.xaml</DependentUpon>
@@ -221,15 +211,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BudjetPage.xaml">
+    <Page Include="Views\BudgetPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UnexpectedPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\HouseHoldPage.xaml">
+    <Page Include="Views\ExpensePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
