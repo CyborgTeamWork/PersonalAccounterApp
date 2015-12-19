@@ -31,33 +31,33 @@
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Contact,
-                    Label = "HouseHold",
+                    Label = "My Expenses",
                     DestPage = typeof(HouseHoldPage)
                 },
-                new NavMenuItem()
-                {
-                    Symbol = Symbol.People,
-                    Label = "LifeStyle",
-                    DestPage = typeof(LifeStylePage)
-                },
-                new NavMenuItem()
-                {
-                    Symbol = Symbol.UnFavorite,
-                    Label = "Unexpected",
-                    DestPage = typeof(UnexpectedPage)
-                },
+                //new NavMenuItem()
+                //{
+                //    Symbol = Symbol.People,
+                //    Label = "LifeStyle",
+                //    DestPage = typeof(LifeStylePage)
+                //},
+                //new NavMenuItem()
+                //{
+                //    Symbol = Symbol.UnFavorite,
+                //    Label = "Unexpected",
+                //    DestPage = typeof(UnexpectedPage)
+                //},
                 new NavMenuItem()
                 {
                     Symbol = Symbol.ThreeBars,
                     Label = "My Budget",
                     DestPage = typeof(BudgetDisplayPage)
                 },
-                new NavMenuItem()
-                {
-                    Symbol = Symbol.Like,
-                    Label = "Wishes",
-                    DestPage = typeof(DrillInPage)
-                },
+                //new NavMenuItem()
+                //{
+                //    Symbol = Symbol.Like,
+                //    Label = "Wishes",
+                //    DestPage = typeof(DrillInPage)
+                //},
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Edit,
