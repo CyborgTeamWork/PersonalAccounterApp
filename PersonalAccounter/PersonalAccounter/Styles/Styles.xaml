@@ -248,5 +248,55 @@
                 Value="#cc6600"
             ></Setter>
     </Style>
+    
+    <DataTemplate x:Name="ExpensesItemTemplate">
+        <ScrollViewer VerticalScrollMode="Auto"  
+                          VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="130"/>
+                        <ColumnDefinition MinWidth="350"/>
+                        <ColumnDefinition MinWidth="130"/>
+                    </Grid.ColumnDefinitions>
+                    <Image
+                                Source="/Assets/StoreLogo.png"
+                               Grid.Row="0"
+                                Grid.RowSpan="3"
+                                Grid.Column="0"
+                                Height="120"
+                                Width="120"
+                                />
+
+
+            <TextBlock Grid.Row="0" 
+                                   Grid.Column="2"  
+                                   Text="{Binding Coast}" 
+                                   Style="{StaticResource ShowItemCostTextBlock}" 
+                                   TextWrapping="Wrap"/>
+
+            <TextBlock Grid.Row="0" 
+                                   Grid.Column="1" 
+                                   Text="{Binding Name}" 
+                                   Style="{StaticResource ShowItemCostTextBlock}"  
+                                   TextWrapping="Wrap"/>
+
+
+            <TextBlock Grid.Row="1" 
+                                   Grid.Column="1" 
+                                   Text="{Binding Description}"  
+                                   Style="{StaticResource ShowItemNameTextBlock}" 
+                                   TextWrapping="Wrap"/>
+        </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+    </DataTemplate>
 
 </ResourceDictionary>

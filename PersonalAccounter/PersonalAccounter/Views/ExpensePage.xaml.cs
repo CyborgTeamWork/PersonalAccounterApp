@@ -1,4 +1,7 @@
-﻿namespace PersonalAccounter.Views
+﻿using System.Collections.ObjectModel;
+using PersonalAccounter.Models;
+
+namespace PersonalAccounter.Views
 {
     using System.Collections.Generic;
     using Windows.UI.Xaml;
@@ -15,23 +18,10 @@
         public ExpensePage()
         {
             this.InitializeComponent();
-            //var contentViewModel = new HouseHoldContentViewModel();
-
-            //contentViewModel.HouseHoldExpenses = new List<HouseHoldViewModel>()
-            //{
-            //    new HouseHoldViewModel("Monthly Rent", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrg6z1AXbFQ7pXxKt474ZOtcuonPKfAWsa5e5KBLGFybW6nNvN", 500, "Sheduled for 15th"),
-            //    new HouseHoldViewModel("Electricity Bill", "http://www.electricitynews.co/wp-content/uploads/2015/09/Electricity.jpg", 120, "... pay on5th day of the month"),
-            //    new HouseHoldViewModel("Internet Bill", "http://live-thedailyvoice.time.ly/wp-content/uploads/2015/10/14821565-Internet-world-wide-web-concept-Earth-globe-with-www-text-and-computer-hand-cursor-isolated-on-white-Stock-Photo.jpg", 25, "THE NET!"),
-            //    new HouseHoldViewModel("Monthly Rent", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrg6z1AXbFQ7pXxKt474ZOtcuonPKfAWsa5e5KBLGFybW6nNvN", 500, "Sheduled for 15th"),
-            //    new HouseHoldViewModel("Electricity Bill", "http://www.electricitynews.co/wp-content/uploads/2015/09/Electricity.jpg", 120, "... pay on5th day of the month"),
-            //    new HouseHoldViewModel("Internet Bill", "http://live-thedailyvoice.time.ly/wp-content/uploads/2015/10/14821565-Internet-world-wide-web-concept-Earth-globe-with-www-text-and-computer-hand-cursor-isolated-on-white-Stock-Photo.jpg", 25, "THE NET!"),
-            //    new HouseHoldViewModel("Monthly Rent", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrg6z1AXbFQ7pXxKt474ZOtcuonPKfAWsa5e5KBLGFybW6nNvN", 500, "Sheduled for 15th"),
-            //    new HouseHoldViewModel("Electricity Bill", "http://www.electricitynews.co/wp-content/uploads/2015/09/Electricity.jpg", 120, "... pay on5th day of the month"),
-            //    new HouseHoldViewModel("Internet Bill", "http://live-thedailyvoice.time.ly/wp-content/uploads/2015/10/14821565-Internet-world-wide-web-concept-Earth-globe-with-www-text-and-computer-hand-cursor-isolated-on-white-Stock-Photo.jpg", 25, "THE NET!"),
-            //};
-
-            //this.DataContext = new MainPageViewModel(contentViewModel);
+            this.DataContext = new ExpenseViewModel();
         }
+
+        public ObservableCollection<Expense> Expenses { get; set; } 
 
         public void NavigateToAddViewClick(object sender, RoutedEventArgs e)
         {
