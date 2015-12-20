@@ -1,4 +1,6 @@
-﻿namespace PersonalAccounter.Views
+﻿using Windows.UI.Xaml.Input;
+
+namespace PersonalAccounter.Views
 {
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -26,7 +28,19 @@
 
         private void MyBudgetCancelClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BudgetDisplayPage));
+            //this.Frame.Navigate(typeof(BudgetDisplayPage));
+        }
+
+        private void UIElement_OnDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if (topbar.Opacity == 0.0)
+            {
+                ShowStoryboard.Begin();
+            }
+            else
+            {
+                HideStoryboard.Begin();
+            }
         }
     }
 }

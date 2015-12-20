@@ -45,10 +45,10 @@ namespace PersonalAccounter.Views
             }
         }
 
-        private void UIElement_OnHolding(object sender, HoldingRoutedEventArgs e)
-        {
+        //private void UIElement_OnHolding(object sender, HoldingRoutedEventArgs e)
+        //{
 
-        }
+        //}
     }
 }
 

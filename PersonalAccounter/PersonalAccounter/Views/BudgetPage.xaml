@@ -7,15 +7,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctl="using:PersonalAccounter.Controls"
     xmlns:viewModels="using:PersonalAccounter.ViewModels"
-    Name="budjetPageElement"
+    Name="budgetPageElement"
     mc:Ignorable="d">
 
-    <Grid Style="{StaticResource MainGridStyle}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid Style="{StaticResource MainGridStyle}" 
+          EntranceNavigationTransitionInfo.IsTargetElement="True"
+          DoubleTapped="UIElement_OnDoubleTapped">
+        <Grid.Resources>
+            <Storyboard x:Name="ShowStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="0.0"
+                                 To="1.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+            </Storyboard>
+            <Storyboard x:Name="HideStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="1.0"
+                                 To="0.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+            </Storyboard>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        
         <Grid x:Name="budgetContainer" Grid.Row="0" Style="{StaticResource MainGridStyle}">
 
             <Grid.RowDefinitions>
@@ -30,34 +47,48 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
+            <StackPanel Grid.Row="0" 
+                        Grid.Column="0" 
+                        HorizontalAlignment="Stretch">
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
-                        <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="My Budget"/>
+                        <TextBlock x:Name="title" 
+                                   Style="{ThemeResource PageTitleTextBlockStyle}" 
+                                   Text="My Budget"/>
                     </ctl:PageHeader.HeaderContent>
                 </ctl:PageHeader>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Padding="0,24,0,24">
-                <TextBlock Text="Set your expected monthly budget" Style="{StaticResource InputItemTextBlockStyle}"/>
+            <StackPanel Grid.Row="1" 
+                        Grid.Column="0" 
+                        HorizontalAlignment="Center" 
+                        Padding="0,24,0,24">
+                <TextBlock Text="Set your expected monthly budget" 
+                           Style="{StaticResource InputItemTextBlockStyle}"/>
                 <StackPanel Orientation="Horizontal">
                     <Border Style="{StaticResource sliderBorderBig}">
                         <StackPanel Orientation="Horizontal" >
-                            <Slider Name="slBudget" Value="{Binding TotalBudget, Mode=TwoWay}"
+                            <Slider Name="slBudget" 
+                                    Value="{Binding TotalBudget, Mode=TwoWay}"
                                         Style="{StaticResource CostSliderStyleBigSum}"/>
                             <TextBox Text="{Binding ElementName=slBudget, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                        Style="{StaticResource CostSliderTexBox}" Height="20"/>
+                                        Style="{StaticResource CostSliderTexBox}" 
+                                     Height="20"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" >
-                <TextBlock Text="Set your Household expenses" Style="{StaticResource InputItemTextBlockStyle}"/>
+            <StackPanel Grid.Row="2" 
+                        Grid.Column="0" 
+                        HorizontalAlignment="Center" >
+                <TextBlock Text="Set your Household expenses" 
+                           Style="{StaticResource InputItemTextBlockStyle}"/>
                 <StackPanel Orientation="Horizontal">
                     <Border Style="{StaticResource sliderBorderSmall}">
                         <StackPanel Orientation="Horizontal" >
-                            <Slider Name="slHome" Value="{Binding HomeExpecations, Mode=TwoWay}"
+                            <Slider Name="slHome" 
+                                    Value="{Binding HomeExpecations, Mode=TwoWay}"
                                     Style="{StaticResource CostSliderStyle}"/>
                             <TextBox Text="{Binding ElementName=slHome, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Height="20"
                                     Style="{StaticResource CostSliderTexBox}"/>
@@ -66,56 +97,96 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Center">
+            <StackPanel Grid.Row="3" 
+                        Grid.Column="0"  
+                        HorizontalAlignment="Center">
                 <TextBlock Text="Set your Lifestyle expenses"
                                Style="{StaticResource InputItemTextBlockStyle}"/>
                 <StackPanel Orientation="Horizontal">
                     <Border Style="{StaticResource sliderBorderSmall}">
                         <StackPanel Orientation="Horizontal" >
-                            <Slider Name="slLife" Value="{Binding LifeExpecations, Mode=TwoWay}"
+                            <Slider Name="slLife" 
+                                    Value="{Binding LifeExpecations, Mode=TwoWay}"
                                     Style="{StaticResource CostSliderStyle}"/>
-                            <TextBox Text="{Binding ElementName=slLife, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                    Style="{StaticResource CostSliderTexBox}" Height="20"/>
+                            <TextBox Text="{Binding ElementName=slLife, 
+                                Path=Value, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                Mode=TwoWay}" 
+                                    Style="{StaticResource CostSliderTexBox}" 
+                                     Height="20"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
             </StackPanel>
 
 
-            <StackPanel Grid.Row="4" Grid.Column="0"  HorizontalAlignment="Center">
+            <StackPanel Grid.Row="4" 
+                        Grid.Column="0"  
+                        HorizontalAlignment="Center">
                 <TextBlock Text="Set your Unexpected margin"
                                Style="{StaticResource InputItemTextBlockStyle}"/>
                 <StackPanel Orientation="Horizontal">
                     <Border Style="{StaticResource sliderBorderSmall}">
                         <StackPanel Orientation="Horizontal" >
-                            <Slider Name="slUnex" Value="{Binding UnexpectedExpecations, Mode=TwoWay}"
+                            <Slider Name="slUnex" 
+                                    Value="{Binding UnexpectedExpecations, 
+                                Mode=TwoWay}"
                                     Style="{StaticResource CostSliderStyle}"/>
-                            <TextBox Text="{Binding ElementName=slUnex, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                    Style="{StaticResource CostSliderTexBox}" Height="20"/>
+                            <TextBox Text="{Binding ElementName=slUnex, 
+                                Path=Value, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                Mode=TwoWay}" 
+                                    Style="{StaticResource CostSliderTexBox}" 
+                                     Height="20"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
             </StackPanel>
-
         </Grid>
 
-        <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
+        <CommandBar x:Name="topbar" 
+                    Opacity="0"
+                    Grid.Row="1" 
+                    VerticalAlignment="Bottom"  
+                    HorizontalContentAlignment="Stretch">
 
-            <AppBarButton Icon="Save" Label="Save My Budget" Click="MyBudgetSettingClick"/>
+            <AppBarButton Icon="Save" 
+                          Label="Save My Budget" 
+                          Click="MyBudgetSettingClick"/>
 
             <AppBarSeparator/>
 
-            <AppBarButton Icon="Cancel" Label="Cancel" Click="MyBudgetCancelClick"/>
+            <AppBarButton Icon="Cancel" 
+                          Label="Cancel">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="myFlyout">
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
+                                       Width ="250"
+                                       TextWrapping="WrapWholeWords"
+                                       Text="The current changes will not be saved. Would you like to continue?" 
+                                       Margin="0,0,0,12" />
+                            <RelativePanel>
+                                <Button Name="Confirm" Content="Ok" />
+                                <Button RelativePanel.AlignLeftWith="Confirm" 
+                                        Margin="60, 0, 0, 0" 
+                                        Content="Cancel"></Button>
+                            </RelativePanel>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
 
             <CommandBar.Content>
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
-                        <TextBlock Text="My Budget" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                        <TextBlock Text="My Budget Setup" 
+                                   Style="{ThemeResource PageTitleTextBlockStyle}" 
+                                   TextWrapping="NoWrap"
+                                   Foreground="#FF7F27"/>
                     </ctl:PageHeader.HeaderContent>
                 </ctl:PageHeader>
             </CommandBar.Content>
-
         </CommandBar>
-
     </Grid>
 </Page>

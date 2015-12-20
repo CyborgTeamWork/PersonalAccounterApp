@@ -25,7 +25,6 @@
                                  To="0.0"
                                  Storyboard.TargetProperty ="Opacity"
                                  Duration="0:0:0.2"/>
-
             </Storyboard>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -42,7 +41,6 @@
                   ItemsSource="{Binding Expenses}"
                   ItemTemplate ="{StaticResource ExpensesItemTemplate}"
            DoubleTapped="UIElement_OnDoubleTapped"
-            Holding="UIElement_OnHolding"
             Margin="0,70,0,0">
 
         </ListView>
@@ -67,7 +65,10 @@
 
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
-                        <TextBlock Text="HouseHold Expenses Page" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                        <TextBlock Text="Expenses Page" 
+                                   Style="{ThemeResource PageTitleTextBlockStyle}" 
+                                   Foreground="#FF7F27"
+                                   TextWrapping="NoWrap"/>
                     </ctl:PageHeader.HeaderContent>
                 </ctl:PageHeader>
             </CommandBar.Content>

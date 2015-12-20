@@ -10,7 +10,24 @@
     xmlns:personalAccounter="using:PersonalAccounter"
     mc:Ignorable="d">
 
-    <Grid Style="{StaticResource MainGridStyle}">
+    <Grid Style="{StaticResource MainGridStyle}"
+          DoubleTapped ="UIElement_OnDoubleTapped">
+        <Grid.Resources>
+            <Storyboard x:Name="ShowStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="0.0"
+                                 To="1.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+            </Storyboard>
+            <Storyboard x:Name="HideStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="1.0"
+                                 To="0.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+            </Storyboard>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
@@ -30,14 +47,20 @@
 
                 <Grid Grid.Row="0" Style="{StaticResource MainGridStyle}">
 
-                    <CaptureElement Name="PreviewControl" Stretch="Fill" Height="150" Width="200" />
+                    <CaptureElement Name="PreviewControl" 
+                                    Stretch="Fill" 
+                                    Height="150" 
+                                    Width="200" />
 
 
-                    <Image Name="PreviewFrameImage" Height="150" Width="200" />
+                    <Image Name="PreviewFrameImage" 
+                           Height="150" 
+                           Width="200" />
 
                     <Grid>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Name="FrameInfoTextBlock" VerticalAlignment="Center"/>
+                            <TextBlock Name="FrameInfoTextBlock" 
+                                       VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -61,7 +84,8 @@
                                Text="Create new expense" 
                                Style="{StaticResource TitleExpenseTextBlockStyle}"/>
 
-                    <TextBlock Grid.Row="1" Grid.ColumnSpan="3"  Text="Add Expense name: " Style="{StaticResource InputItemTextBlockStyle}"/>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="3"  Text="Add Expense name: " 
+                               Style="{StaticResource InputItemTextBlockStyle}"/>
                     <TextBox Name="tbName"
                              PlaceholderText="Add Expense Name" 
                              Grid.Row="1"  
@@ -129,6 +153,7 @@
         </Grid>
 
         <CommandBar x:Name="topbar" 
+                    Opacity="0"
                     Grid.Row="1" 
                     VerticalAlignment="Bottom"  
                     HorizontalContentAlignment="Stretch">
@@ -147,7 +172,9 @@
                                        Margin="0,0,0,12" />
                             <RelativePanel>
                                 <Button Name="Confirm" Content="Ok" />
-                                <Button RelativePanel.AlignLeftWith="Confirm" Margin="60, 0, 0, 0" Content="Cancel"></Button>
+                                <Button RelativePanel.AlignLeftWith="Confirm" 
+                                        Margin="60, 0, 0, 0" 
+                                        Content="Cancel"></Button>
                             </RelativePanel>
                         </StackPanel>
                     </Flyout>
@@ -157,7 +184,10 @@
             <CommandBar.Content>
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
-                        <TextBlock Text="Add New Expense" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                        <TextBlock Text="Add New Expense" 
+                                   Style="{ThemeResource PageTitleTextBlockStyle}" 
+                                   Foreground="#FF7F27"
+                                   TextWrapping="NoWrap"/>
                     </ctl:PageHeader.HeaderContent>
                 </ctl:PageHeader>
             </CommandBar.Content>

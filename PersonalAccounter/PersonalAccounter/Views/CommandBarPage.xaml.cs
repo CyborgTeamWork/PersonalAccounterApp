@@ -1,11 +1,8 @@
 ﻿namespace PersonalAccounter.Views
 {
     using System;
-    using Windows.UI.Popups;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
-    using PersonalAccounter.Helpers;
-    using PersonalAccounter.ViewModels;
     using Windows.Graphics.Display;
     using Windows.System.Display;
     using Windows.Media;
@@ -63,6 +60,18 @@
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
         {
             //myFlyout.Hide();
+        }
+
+        private void UIElement_OnDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if (topbar.Opacity == 0.0)
+            {
+                ShowStoryboard.Begin();
+            }
+            else
+            {
+                HideStoryboard.Begin();
+            }
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

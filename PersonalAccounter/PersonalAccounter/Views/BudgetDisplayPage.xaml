@@ -10,17 +10,40 @@
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     mc:Ignorable="d">
 
-    <Grid Style="{StaticResource MainGridStyle}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid Style="{StaticResource MainGridStyle}" 
+          EntranceNavigationTransitionInfo.IsTargetElement="True"
+          DoubleTapped="UIElement_OnDoubleTapped">
+        <Grid.Resources>
+            <Storyboard x:Name="ShowStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="0.0"
+                                 To="1.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+            </Storyboard>
+            <Storyboard x:Name="HideStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="1.0"
+                                 To="0.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+
+            </Storyboard>
+        </Grid.Resources>
         <StackPanel>
             <controls:PageHeader>
                 <controls:PageHeader.HeaderContent>
-                    <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="My Budget"/>
+                    <TextBlock x:Name="title" 
+                               Style="{ThemeResource PageTitleTextBlockStyle}" 
+                               Text="My Budget"/>
                 </controls:PageHeader.HeaderContent>
             </controls:PageHeader>
             <RelativePanel HorizontalAlignment="Center"
-                           VerticalAlignment="Center" Height="526">
+                           VerticalAlignment="Center" 
+                           Height="526">
                 <StackPanel 
-                    RelativePanel.AlignVerticalCenterWith="MyExpenses" Margin="0,0,0,-65">
+                    RelativePanel.AlignVerticalCenterWith="MyExpenses" 
+                    Margin="0,0,0,-65">
                     <controls1:RingSlice
             Fill="White"
             InnerRadius="165"
@@ -46,20 +69,28 @@
            
         </StackPanel>
 
-        <CommandBar x:Name="topbar"  VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
+        <CommandBar 
+            x:Name="topbar" 
+            Opacity ="0" 
+            VerticalAlignment="Bottom" 
+            HorizontalContentAlignment="Stretch">
 
-            <AppBarButton Icon="Setting" Label="Set My Budget" Click="MyBudgetSettingClick"/>
+            <AppBarButton Icon="Setting" 
+                          Label="Set My Budget" 
+                          Click="MyBudgetSettingClick"/>
 
             <AppBarSeparator/>
 
             <CommandBar.Content>
                 <controls:PageHeader>
                     <controls:PageHeader.HeaderContent>
-                        <TextBlock Text="My Budget" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                        <TextBlock Text="My Budget" 
+                                   Style="{ThemeResource PageTitleTextBlockStyle}" 
+                                   Foreground="#FF7F27"
+                                   TextWrapping="NoWrap"/>
                     </controls:PageHeader.HeaderContent>
                 </controls:PageHeader>
             </CommandBar.Content>
-
         </CommandBar>
     </Grid>
 </Page>
