@@ -60,18 +60,41 @@
                 this.TogglePaneButton.Focus(FocusState.Programmatic);
             };
 
-            this.RootSplitView.RegisterPropertyChangedCallback(
-                SplitView.DisplayModeProperty,
-                (s, a) =>
-                {
-                    this.CheckTogglePaneButtonSizeChanged();
-                });
+            //this.RootSplitView.RegisterPropertyChangedCallback(
+            //    SplitView.DisplayModeProperty,
+            //    (s, a) =>
+            //    {
+            //        this.CheckTogglePaneButtonSizeChanged();
+            //    });
 
             SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManager_BackRequested;
 
             NavMenuList.ItemsSource = navlist;
             //this.InitAsync();
         }
+
+        public void SplitView_ManipulationStarted(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            int a = 4;
+        }
+        public void SplitView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+                var b = e.Cumulative;
+                var bb = b.Translation;
+                var x = bb.X;
+                var currentpoint = e.Position.X;
+            int a = 6;
+            //if (currentpoint.X - initialpoint.X >= 500)
+            //    //500 is the threshold value, where you want to trigger the swipe right event
+            //{
+            //    System.Diagnostics.Debug.WriteLine("Swipe Right");
+            //    e.Complete();
+            //}
+        }
+
+        //private void ManipulationsComplete(object sender, ManipulationCompletedRoutedEventArgs e)
+        //{
+        //}
 
         public Frame AppFrame { get { return this.frame; } }
 
@@ -186,51 +209,24 @@
                 control.Loaded += Page_Loaded;
             }
 
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                AppFrame.CanGoBack ?
-                AppViewBackButtonVisibility.Visible :
-                AppViewBackButtonVisibility.Collapsed;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ((Page)sender).Focus(FocusState.Programmatic);
             ((Page)sender).Loaded -= Page_Loaded;
-            this.CheckTogglePaneButtonSizeChanged();
+           // this.CheckTogglePaneButtonSizeChanged();
         }
 
         #endregion
 
         public Rect TogglePaneButtonRect {get; private set;}
 
-        public event TypedEventHandler<AppShell, Rect> TogglePaneButtonRectChanged;
-
         private void TogglePaneButton_Checked(object sender, RoutedEventArgs e)
         {
-            this.CheckTogglePaneButtonSizeChanged();
+            RootSplitView.IsPaneOpen = !RootSplitView.IsPaneOpen;
         }
-
-        private void CheckTogglePaneButtonSizeChanged()
-        {
-            if (this.RootSplitView.DisplayMode == SplitViewDisplayMode.Inline ||
-                this.RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
-            {
-                var transform = this.TogglePaneButton.TransformToVisual(this);
-                var rect = transform.TransformBounds(new Rect(0, 0, this.TogglePaneButton.ActualWidth, this.TogglePaneButton.ActualHeight));
-                this.TogglePaneButtonRect = rect;
-            }
-            else
-            {
-                this.TogglePaneButtonRect = new Rect();
-            }
-
-            var handler = this.TogglePaneButtonRectChanged;
-            if (handler != null)
-            {
-                handler.DynamicInvoke(this, this.TogglePaneButtonRect);
-            }
-        }
-
+ 
         private void NavMenuItemContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
         {
             if (!args.InRecycleQueue && args.Item != null && args.Item is NavMenuItem)
@@ -248,5 +244,16 @@
             this.Frame.Navigate(typeof (LoginPageView));
         }
 
+        private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            if (e.Velocities.Linear.X < 0)
+            {
+                RootSplitView.IsPaneOpen = false;
+            }
+            if (e.Velocities.Linear.X > 0)
+            {
+                RootSplitView.IsPaneOpen = true;
+            }
+        }
     }
 }

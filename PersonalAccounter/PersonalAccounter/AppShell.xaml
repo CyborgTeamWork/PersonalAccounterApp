@@ -39,7 +39,7 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    
+
     <Grid Background="#ff7f27">
         <!-- Adaptive triggers -->
         <VisualStateManager.VisualStateGroups>
@@ -89,28 +89,38 @@
 
         <!-- Top-level navigation menu + app content -->
         <SplitView x:Name="RootSplitView"
-                   DisplayMode="Inline"
+                   DisplayMode="Overlay"
                    OpenPaneLength="200"
-                   IsTabStop="False">
+                   IsPaneOpen="False"
+                   CompactPaneLength="40"
+                                        >
             <SplitView.Pane>
-                
-                <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
-               <controls:NavMenuListView x:Name="NavMenuList"
+                <Grid Background="Aqua"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      ManipulationMode="TranslateX"
+                      ManipulationCompleted="UIElement_OnManipulationCompleted">
+                    <controls:NavMenuListView x:Name="NavMenuList"
                                           TabIndex="7"
                                           Background="#cc6600"
-                                          Margin="0,48,0,0"
-                                          ContainerContentChanging="NavMenuItemContainerContentChanging"
+                                   
+                                         ContainerContentChanging="NavMenuItemContainerContentChanging"
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                           ItemTemplate="{StaticResource NavMenuItemTemplate}"
-                                          ItemInvoked="NavMenuList_ItemInvoked" />
-            </SplitView.Pane> 
+                                          ItemInvoked="NavMenuList_ItemInvoked" Height="1000" VerticalAlignment="Top" Margin="0,0,0,-360" />
+                </Grid>
+                <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
+                
+            </SplitView.Pane>
 
             <!-- OnNavigatingToPage we synchronize the selected item in the nav menu with the current page.
                  OnNavigatedToPage we move keyboard focus to the first item on the page after it's loaded and update the Back button. -->
             <SplitView.Content>
                 <Frame Name="frame"
                    Navigating="OnNavigatingToPage"
-                   Navigated="OnNavigatedToPage">
+                   Navigated="OnNavigatedToPage"
+                       ManipulationMode="TranslateX"
+                      ManipulationCompleted="UIElement_OnManipulationCompleted">
                     <Frame.ContentTransitions>
                         <TransitionCollection>
                             <NavigationThemeTransition>
@@ -128,10 +138,8 @@
         <ToggleButton x:Name="TogglePaneButton"
                       TabIndex="1"
                       Style="{StaticResource SplitViewTogglePaneButtonStyle}" 
-                      IsChecked="{Binding IsPaneOpen, 
-            ElementName=RootSplitView, 
-            Mode=TwoWay}"
                       Unchecked="TogglePaneButton_Checked"
+                      Checked="TogglePaneButton_Checked"
                       AutomationProperties.Name="Menu"
                       ToolTipService.ToolTip="Menu"
                       Background="#cc6600"

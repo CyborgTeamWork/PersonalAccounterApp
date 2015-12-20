@@ -1,4 +1,6 @@
-﻿namespace PersonalAccounter.Views
+﻿using Windows.UI.Xaml.Input;
+
+namespace PersonalAccounter.Views
 {
     using System;
     using Windows.UI.Popups;

@@ -26,7 +26,7 @@ namespace PersonalAccounter.Controls
 
             this.Loaded += (s, a) =>
             {
-                AppShell.Current.TogglePaneButtonRectChanged += Current_TogglePaneButtonSizeChanged;
+             //   AppShell.Current.TogglePaneButtonRectChanged += Current_TogglePaneButtonSizeChanged;
                 this.titleBar.Margin = new Thickness(AppShell.Current.TogglePaneButtonRect.Right, 0, 0, 0);
             };
         }
