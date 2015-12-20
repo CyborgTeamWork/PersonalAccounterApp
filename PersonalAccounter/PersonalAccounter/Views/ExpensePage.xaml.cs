@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Input;
 using PersonalAccounter.Models;
 
 namespace PersonalAccounter.Views
@@ -30,6 +31,23 @@ namespace PersonalAccounter.Views
 
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void UIElement_OnDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if (topbar.Opacity == 0.0)
+            {
+                ShowStoryboard.Begin();
+            }
+            else
+            {
+                HideStoryboard.Begin();
+            }
+        }
+
+        private void UIElement_OnHolding(object sender, HoldingRoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -246,11 +246,11 @@
 
         private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (e.Velocities.Linear.X < 0)
+            if (e.Velocities.Linear.X < -5)
             {
                 RootSplitView.IsPaneOpen = false;
             }
-            if (e.Velocities.Linear.X > 0)
+            if (e.Velocities.Linear.X > 5)
             {
                 RootSplitView.IsPaneOpen = true;
             }

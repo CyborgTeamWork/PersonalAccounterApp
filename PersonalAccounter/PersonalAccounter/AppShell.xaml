@@ -16,30 +16,29 @@
          by default with a transparent background.  It will also take into account the presence of software
          navigation buttons if they appear on a device.  An app can opt-out by switching to UseCoreWindow.
     -->
-
     <Page.Resources>
         <DataTemplate x:Key="NavMenuItemTemplate" 
                       x:DataType="local:NavMenuItem">
-            <Grid Background="#cc6600">
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <FontIcon x:Name="Glyph" 
-                          Foreground="White" 
+                          Foreground="#CC6600" 
                           FontSize="16" 
                           Glyph="{x:Bind SymbolAsChar}" 
                           VerticalAlignment="Center" 
                           HorizontalAlignment="Center" 
                           ToolTipService.ToolTip="{x:Bind Label}"/>
                 <TextBlock x:Name="Text" 
-                           Foreground="White" 
+                           Foreground="#CC6600" 
                            Grid.Column="1" 
                            Text="{x:Bind Label}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
-
+  
     <Grid Background="#ff7f27">
         <!-- Adaptive triggers -->
         <VisualStateManager.VisualStateGroups>
@@ -89,28 +88,26 @@
 
         <!-- Top-level navigation menu + app content -->
         <SplitView x:Name="RootSplitView"
-                   DisplayMode="Overlay"
-                   OpenPaneLength="200"
+                   DisplayMode="CompactOverLay"
+                   OpenPaneLength="160"
                    IsPaneOpen="False"
-                   CompactPaneLength="40"
-                                        >
+                   CompactPaneLength="50" >
             <SplitView.Pane>
-                <Grid Background="Aqua"
-                      VerticalAlignment="Stretch"
-                      HorizontalAlignment="Stretch"
+                <StackPanel 
                       ManipulationMode="TranslateX"
                       ManipulationCompleted="UIElement_OnManipulationCompleted">
+
                     <controls:NavMenuListView x:Name="NavMenuList"
                                           TabIndex="7"
-                                          Background="#cc6600"
+                                          Background="#F2F2F2"
                                    
                                          ContainerContentChanging="NavMenuItemContainerContentChanging"
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                           ItemTemplate="{StaticResource NavMenuItemTemplate}"
-                                          ItemInvoked="NavMenuList_ItemInvoked" Height="1000" VerticalAlignment="Top" Margin="0,0,0,-360" />
-                </Grid>
+                                          ItemInvoked="NavMenuList_ItemInvoked" Height="1000" Margin="0,50,0,0"/>
+                </StackPanel>
                 <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
-                
+
             </SplitView.Pane>
 
             <!-- OnNavigatingToPage we synchronize the selected item in the nav menu with the current page.
@@ -133,16 +130,24 @@
                 </Frame>
             </SplitView.Content>
         </SplitView>
-
         <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
-        <ToggleButton x:Name="TogglePaneButton"
+
+        <Grid Background="#F2F2F2" Height="50" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ToggleButton x:Name="TogglePaneButton"
+                      Grid.Row="0"
                       TabIndex="1"
                       Style="{StaticResource SplitViewTogglePaneButtonStyle}" 
                       Unchecked="TogglePaneButton_Checked"
                       Checked="TogglePaneButton_Checked"
                       AutomationProperties.Name="Menu"
                       ToolTipService.ToolTip="Menu"
-                      Background="#cc6600"
+                      Foreground="#CC6600"
+                      Background="#F2F2F2"
                       />
+        </Grid>
+            
     </Grid>
 </Page>

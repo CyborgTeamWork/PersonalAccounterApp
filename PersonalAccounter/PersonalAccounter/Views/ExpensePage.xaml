@@ -10,7 +10,24 @@
     Name="expensePage"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Background="#ff7f27">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Background="#ff7f27" Name="MainGrid">
+        <Grid.Resources>
+            <Storyboard x:Name="ShowStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="0.0"
+                                 To="1.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+            </Storyboard>
+            <Storyboard x:Name="HideStoryboard">
+                <DoubleAnimation Storyboard.TargetName="topbar"
+                                 From="1.0"
+                                 To="0.0"
+                                 Storyboard.TargetProperty ="Opacity"
+                                 Duration="0:0:0.2"/>
+
+            </Storyboard>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*">
             </RowDefinition>
@@ -22,14 +39,19 @@
             Grid.Row="0"
             VerticalAlignment ="Stretch"
                   HorizontalAlignment="Stretch"
-                   
                   ItemsSource="{Binding Expenses}"
-                  ItemTemplate ="{StaticResource ExpensesItemTemplate}">
+                  ItemTemplate ="{StaticResource ExpensesItemTemplate}"
+           DoubleTapped="UIElement_OnDoubleTapped"
+            Holding="UIElement_OnHolding"
+            Margin="0,70,0,0">
 
         </ListView>
 
-        <CommandBar x:Name="topbar" Grid.Row="1" VerticalAlignment="Bottom"  HorizontalContentAlignment="Stretch">
-
+        <CommandBar x:Name="topbar"
+                    Opacity="0.0" 
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    HorizontalContentAlignment="Stretch">
             <AppBarButton Icon="Add" Label="Add" Click ="NavigateToAddViewClick">
             </AppBarButton>
 
@@ -42,6 +64,7 @@
             </CommandBar.SecondaryCommands>
 
             <CommandBar.Content>
+
                 <ctl:PageHeader>
                     <ctl:PageHeader.HeaderContent>
                         <TextBlock Text="HouseHold Expenses Page" Style="{ThemeResource PageTitleTextBlockStyle}" TextWrapping="NoWrap"/>
