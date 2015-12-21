@@ -1,10 +1,9 @@
-﻿using Windows.UI.Xaml.Input;
-
-namespace PersonalAccounter.Views
+﻿namespace PersonalAccounter.Views
 {
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
-    using PersonalAccounter.ViewModels;
+    using ViewModels;
+    using Windows.UI.Xaml.Input;
 
     public sealed partial class BudgetPage : Page
     {
@@ -21,14 +20,15 @@ namespace PersonalAccounter.Views
             var household = slHome.Value;
             var lifestyle = slLife.Value;
             var unexpected = slUnex.Value;
-            this.budgetVM.EditMyBudget(overall, household,lifestyle,unexpected);
+            this.budgetVM.CreateNewBudget(overall, household, lifestyle, unexpected);
+            //this.budgetVM.EditMyBudget(overall, household, lifestyle, unexpected);
             
             this.Frame.Navigate(typeof(BudgetDisplayPage));
         }
 
         private void MyBudgetCancelClick(object sender, RoutedEventArgs e)
         {
-            //this.Frame.Navigate(typeof(BudgetDisplayPage));
+            this.myFlyout.Hide();
         }
 
         private void UIElement_OnDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -41,6 +41,11 @@ namespace PersonalAccounter.Views
             {
                 HideStoryboard.Begin();
             }
+        }
+
+        private  void Confirm_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BudgetDisplayPage));
         }
     }
 }

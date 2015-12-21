@@ -1,4 +1,7 @@
-﻿namespace PersonalAccounter
+﻿using System.Linq.Expressions;
+using Parse;
+
+namespace PersonalAccounter
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -18,15 +21,32 @@
     /// </summary>
     public sealed partial class AppShell : Page
     {
-        // Declare the top level nav items
-        private List<NavMenuItem> navlist = new List<NavMenuItem>(
+        private List<NavMenuItem> navigation = new List<NavMenuItem>(
             new[]
             {
                 new NavMenuItem()
                 {
                     Symbol = Symbol.Go,
                     Label = "Sign In",
-                    DestPage = typeof(LoginPageView)
+                    DestPage = typeof (SignIn)
+                },
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Contact,
+                    Label = "Sign Up",
+                    DestPage = typeof (LoginPageView)
+                }
+            }
+    );
+
+    private List<NavMenuItem> navlist = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem()
+                {
+                    Symbol = Symbol.Go,
+                   Label = "Sign Out",
+                   DestPage = typeof(SignIn)
                 },
                 new NavMenuItem()
                 {
@@ -39,13 +59,7 @@
                     Symbol = Symbol.ThreeBars,
                     Label = "My Budget",
                     DestPage = typeof(BudgetDisplayPage)
-                },
-                new NavMenuItem()
-                {
-                    Symbol = Symbol.Edit,
-                    Label = "Settings",
-                    DestPage = typeof(CommandBarPage)
-                },
+                }
             });
 
         public static AppShell Current = null;
@@ -60,17 +74,16 @@
                 this.TogglePaneButton.Focus(FocusState.Programmatic);
             };
 
-            //this.RootSplitView.RegisterPropertyChangedCallback(
-            //    SplitView.DisplayModeProperty,
-            //    (s, a) =>
-            //    {
-            //        this.CheckTogglePaneButtonSizeChanged();
-            //    });
-
             SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManager_BackRequested;
 
-            NavMenuList.ItemsSource = navlist;
-            //this.InitAsync();
+            if (ParseUser.CurrentUser != null)
+            {
+                NavMenuList.ItemsSource = navlist;
+            }
+            else
+            {
+                NavMenuList.ItemsSource = navigation;
+            }
         }
 
         public void SplitView_ManipulationStarted(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -246,11 +259,11 @@
 
         private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (e.Velocities.Linear.X < -5)
+            if (e.Velocities.Linear.X < -1)
             {
                 RootSplitView.IsPaneOpen = false;
             }
-            if (e.Velocities.Linear.X > 5)
+            if (e.Velocities.Linear.X > 1)
             {
                 RootSplitView.IsPaneOpen = true;
             }

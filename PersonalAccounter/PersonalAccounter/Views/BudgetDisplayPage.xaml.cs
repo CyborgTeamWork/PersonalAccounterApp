@@ -1,9 +1,7 @@
-﻿using Windows.UI.Xaml.Input;
-
-namespace PersonalAccounter.Views
+﻿namespace PersonalAccounter.Views
 {
-    using System;
-    using System.Collections.Generic;
+    using Windows.UI.Xaml.Input;
+    using ViewModels;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using WinRTXamlToolkit.Controls.DataVisualization.Charting;
@@ -13,21 +11,20 @@ namespace PersonalAccounter.Views
     /// </summary>
     public sealed partial class BudgetDisplayPage : Page
     {
+        private ExpenseViewModel expenses;
         public BudgetDisplayPage()
         {
 
             this.InitializeComponent();
-
-            List<Tuple<string, double>> myList = new List<Tuple<string, double>>()
-            {
-                new Tuple<string, double>("Household", 20),
-                new Tuple<string, double>("Lifestyle", 30),
-                new Tuple<string, double>("Unexpected", 50)
-            };
-
-            (MyExpenses.Series[0] as PieSeries).ItemsSource = myList;
+            this.expenses = new ExpenseViewModel();
+            this.PopulateChart();
         }
 
+        public async void PopulateChart()
+        {
+            var myList = await this.expenses.EditChart();
+            (MyExpenses.Series[0] as PieSeries).ItemsSource = myList;
+        }
         private void MyBudgetSettingClick(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(BudgetPage));

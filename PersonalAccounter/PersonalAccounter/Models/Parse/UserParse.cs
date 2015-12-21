@@ -27,10 +27,10 @@ namespace PersonalAccounter.Models.Parse
             set { this.SetProperty(value); }
         }
 
-        [ParseFieldName("Expense")]
-        public IList<ExpenseParse> Expenses
+        [ParseFieldName("Expenses")]
+        public List<ExpenseParse> Expenses
         {
-            get { return this.GetProperty<IList<ExpenseParse>>(); }
+            get { return this.GetProperty<List<ExpenseParse>>(); }
             set { this.SetProperty(value);}
         }
     }

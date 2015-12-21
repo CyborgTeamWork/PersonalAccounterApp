@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using SQLite.Net.Attributes;
 
 namespace PersonalAccounter.Models
 {
     public class Expense
     {
+
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; }
@@ -18,6 +20,8 @@ namespace PersonalAccounter.Models
         public double Coast { get; set; }
 
         public Category Category { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         [ForeignKey("")]
         public int UserId { get; set; }

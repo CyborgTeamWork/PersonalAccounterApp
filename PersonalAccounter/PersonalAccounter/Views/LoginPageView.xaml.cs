@@ -1,20 +1,9 @@
-﻿using Windows.UI.Xaml.Input;
-
-namespace PersonalAccounter.Views
+﻿namespace PersonalAccounter.Views
 {
     using System;
-    using Windows.UI.Popups;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
-    using Parse;
-    using PersonalAccounter.Models;
-    using PersonalAccounter.Models.Repository;
     using PersonalAccounter.ViewModels;
-    using SQLite.Net;
-    using SQLite.Net.Async;
-    using SQLite.Net.Platform.WinRT;
-    using WinRTXamlToolkit.Controls.Extensions;
-    using PersonalAccounter.Helpers;
 
     public sealed partial class LoginPageView : Page
     {
@@ -29,9 +18,8 @@ namespace PersonalAccounter.Views
         {
             string username = id.Text;
             string password = pwd.Password;
-            this.Frame.Navigate(typeof(BudgetDisplayPage));
-            var successMessage = new MessageDialog("You successfully signed in!");
-            await successMessage.ShowAsync();
+            this.userViewModel.Register(username, password);
+            this.Frame.Navigate(typeof(BudgetPage));
         }
 
         private void Button_Toggle_Click_Login(object sender, RoutedEventArgs e)

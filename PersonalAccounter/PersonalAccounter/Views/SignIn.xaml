@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="PersonalAccounter.Views.LoginPageView"
+    x:Class="PersonalAccounter.Views.SignIn"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PersonalAccounter"
@@ -20,39 +20,37 @@
             </c:PageHeader.HeaderContent>
         </c:PageHeader>
         <StackPanel x:Name="pop" Orientation="Vertical" Background="#ff7f27">
-                    <StackPanel>
-                        <TextBlock Text="Sign up" 
+            <StackPanel>
+                <TextBlock Text="Sign in" 
                                    Style="{StaticResource LoginFormLoginTextBlockStyle}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" 
+            </StackPanel>
+            <StackPanel Orientation="Vertical" 
                                 Margin="0,50" 
                                 HorizontalAlignment="Center">
-                        <TextBox x:Name="id" 
+                <TextBox x:Name="id" 
                                  Header="Username" 
                                  Style="{StaticResource LoginFormLoginTextBoxStyle}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" 
+            </StackPanel>
+            <StackPanel Orientation="Vertical" 
                                 HorizontalAlignment="Center">
-                        <PasswordBox  x:Name="pwd" 
+                <PasswordBox  x:Name="pwd" 
                                       Header="Password" 
                                       Style="{StaticResource LoginFormLoginTPasswordBoxStyle}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" 
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" 
                                 Margin="0,50" 
                                 HorizontalAlignment="Center">
-                        <Button x:Name="loginclick" 
+                <Button x:Name="loginclick" 
                                 Foreground="Wheat"  
                                 Width="100" 
-                                Content="Sign up" 
-                                Click ="SignInClick"></Button>
-                        <Button x:Name="cancel" 
+                                Content="SignIn" Click ="SignInClick"></Button>
+                <Button x:Name="cancel" 
                                 Click="Button_Toggle_Click_Login"  
                                 Foreground="Wheat"  
                                 Width="100" 
-                                Content="Cancel" >
-                            
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
+                                Content="Cancel" ></Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
+

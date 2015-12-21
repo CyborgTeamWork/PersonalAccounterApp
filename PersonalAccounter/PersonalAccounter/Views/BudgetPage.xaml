@@ -167,10 +167,13 @@
                                        Text="The current changes will not be saved. Would you like to continue?" 
                                        Margin="0,0,0,12" />
                             <RelativePanel>
-                                <Button Name="Confirm" Content="Ok" />
+                                <Button Name="Confirm" 
+                                        Content="Ok"
+                                        Click="Confirm_OnClick"/>
                                 <Button RelativePanel.AlignLeftWith="Confirm" 
                                         Margin="60, 0, 0, 0" 
-                                        Content="Cancel"></Button>
+                                        Content="Cancel"
+                                        Click ="MyBudgetCancelClick"></Button>
                             </RelativePanel>
                         </StackPanel>
                     </Flyout>

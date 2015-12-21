@@ -1,55 +1,60 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Parse;
-using PersonalAccounter.Models;
-using PersonalAccounter.Models.Parse;
-using PersonalAccounter.Models.Repository;
-using PersonalAccounter.Models.SQLite;
-using PersonalAccounter.Models.SQLite.Repository;
+﻿using System;
 
 namespace PersonalAccounter.Helpers.ViewModelHelpers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Parse;
+    using Models;
+    using Models.Parse;
+    using Models.Repository;
+    using Models.SQLite;
+    using Models.SQLite.Repository;
     public class BudgetViewModelHelpers
     {
         private IRepository<Budget> budgets;
         private IRepository<User> users;
+       // private CheckConnection connection;
 
         public BudgetViewModelHelpers()
         {
-            budgets = GenericRepostory<Budget>.Repostory;
-            users = GenericRepostory<User>.Repostory;
+            this.budgets = GenericRepostory<Budget>.Repostory;
+            this.users = GenericRepostory<User>.Repostory;
+           // this.connection = new CheckConnection();
         }
 
-        public async void CreateNewBudget(User user)
+        public async void CreateNewBudgetLocally(double overall, double household, double lifestyle, double unexpected)
         {
+            var userId = await this.GetUserId();
             var budget = new Budget
             {
-                Overall = 0.00,
-                HouseholdExpectancy = 0.00,
-                LifestyleExpectancy = 0.00,
-                UnexpectedExpectancy = 0.00,
-                UserId = user.Id
+                Overall = overall,
+                HouseholdExpectancy = household,
+                LifestyleExpectancy = lifestyle,
+                UnexpectedExpectancy = unexpected,
+                Saved = overall - household - lifestyle - unexpected,
+                UserId = userId
             };
 
             await this.budgets.Insert(budget);
         }
 
-        public async void CreateNewBudgetInParse(UserParse user)
+        public async void CreateNewBudgetInParse(double overall, double household, double lifestyle, double unexpected)
         {
-            var newBudget = ParseObject.Create<BudgetParse>();
-            newBudget = new BudgetParse
-            {
-                Overall = 0.00,
-                HouseholdExpectancy = 0.00,
-                LifestyleExpectancy = 0.00,
-                UnexpectedExpectancy = 0.00,
-                Saved = 0.00,
-            };
+            var currentUser = (UserParse)ParseUser.CurrentUser;
+                var newBudget = ParseObject.Create<BudgetParse>();
+                newBudget = new BudgetParse
+                {
+                    Overall = overall,
+                    HouseholdExpectancy = household,
+                    LifestyleExpectancy = lifestyle,
+                    UnexpectedExpectancy = unexpected,
+                    Saved = overall - household - lifestyle - unexpected,
+                };
 
-            user.Add("Budget", newBudget);
-            await newBudget.SaveAsync();
-
+                currentUser.Add("Budget", newBudget);
+                await newBudget.SaveAsync();
         }
 
         public async Task<List<Budget>> Get()
@@ -57,32 +62,56 @@ namespace PersonalAccounter.Helpers.ViewModelHelpers
             return await this.budgets.Get();
         }
 
-        public async void UpdateBudget(double overall, double household, double lifestyle, double unexpected)
-        {
-            var userId = await this.GetUserId();
-            var allBudgets = await this.budgets.Get();
-            var selected = allBudgets
-                    .Where(b => b.UserId == userId)
-                    .FirstOrDefault();
-            selected.Overall = overall;
-            selected.HouseholdExpectancy = household;
-            selected.LifestyleExpectancy = lifestyle;
-            selected.UnexpectedExpectancy = unexpected;
-            selected.Saved = overall - household - lifestyle - unexpected;
-            await this.budgets.Update(selected);
-        }
+        //public async void UpdateBudgetLocally(double overall, double household, double lifestyle, double unexpected)
+        //{
+        //    var userId = await this.GetUserId();
+        //    var allBudgets = await this.budgets.Get();
+        //    var selected = allBudgets
+        //            .Where(b => b.UserId == userId)
+        //            .FirstOrDefault();
+        //    selected.Overall = overall;
+        //    selected.HouseholdExpectancy = household;
+        //    selected.LifestyleExpectancy = lifestyle;
+        //    selected.UnexpectedExpectancy = unexpected;
+        //    selected.Saved = overall - household - lifestyle - unexpected;
+        //    await this.budgets.Update(selected);
+        //}
+
+        //public async void UpdateBudgetParse(double overall, double household, double lifestyle, double unexpected)
+        //{
+        //    var parseUser = (UserParse)ParseUser.CurrentUser;
+        //    parseUser.Budget.Overall = overall;
+        //    parseUser.Budget.HouseholdExpectancy = household;
+        //    parseUser.Budget.LifestyleExpectancy = lifestyle;
+        //    parseUser.Budget.UnexpectedExpectancy = unexpected;
+        //    await parseUser.SaveAsync();
+        //}
 
 
         public async Task<int> GetUserId()
         {
-            var current = ParseUser.CurrentUser.Username;
-            var userCollection = await users.Get();
-            
+            var current = (UserParse)ParseUser.CurrentUser;
+            var username = current.Username;
+            var userCollection = await this.users.Get();
             var user = userCollection
-                    .Where(u => u.Username == current)
+                    .Where(u => u.Username == username)
                     .FirstOrDefault();
             var  userId = user.Id;
             return userId;
+        }
+
+        public async Task<int> CalculateAngle()
+        {
+            var userId = await this.GetUserId();
+
+            var collection = await this.budgets.Get();
+            var selected = collection.
+                    FirstOrDefault(b => b.UserId == userId);
+            var createdOn = selected.CreatedOn;
+            DateTime current = DateTime.Now;
+            TimeSpan days = new TimeSpan(30);
+            TimeSpan data = current - createdOn; 
+            return (int.Parse(data.ToString()) % 30);
         }
     }
 }

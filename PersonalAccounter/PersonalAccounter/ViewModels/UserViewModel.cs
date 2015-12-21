@@ -1,4 +1,7 @@
-﻿namespace PersonalAccounter.ViewModels
+﻿using System;
+using Windows.UI.Popups;
+
+namespace PersonalAccounter.ViewModels
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -11,14 +14,21 @@
 
         public UserViewModel()
         {
-            //this.users = GenericRepostory<User>.Repostory;
             this.users = new UserViewModelHelper();
 
         }
 
         public async void Register(string username,string password)
         {
-            users.RegisterUser(username, password);
+            this.users.SignUpLocally(username, password);
+           this.users.SignUpParse(username, password);
+            var successMessage = new MessageDialog("You successfully signed up! Please, fill your expected budget!");
+            await successMessage.ShowAsync();
+        }
+
+        public async void SignIn(string username, string password)
+        {
+            this.users.SignInUsingParse(username, password);
         }
 
         public async Task<List<User>> GetUsers()

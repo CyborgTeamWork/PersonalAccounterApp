@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 using PersonalAccounter.Helpers.ViewModelHelpers;
 using PersonalAccounter.Models;
 
@@ -60,7 +63,16 @@ namespace PersonalAccounter.ViewModels
 
         public void AddExpense(string name, string imageUrl, string description, double price, Category category)
         {
-            this.expenses.AddNewExpense(name, imageUrl,description,price,category);
+            this.expenses.AddNewExpenseLocally(name, imageUrl,description,price,category);
+            this.expenses.AddExpenseParse(name, imageUrl, description, price, category);
+            this.Expenses.Add(new Expense
+            {
+                Name = name,
+                ImageUrl = imageUrl,
+                Description = description,
+                Coast = price,
+                Category = category
+            });
         }
 
         public async void Display()
@@ -68,9 +80,9 @@ namespace PersonalAccounter.ViewModels
            await this.expenses.Get();
         }
 
-        public void Edit()
+        public async Task<List<Tuple<string, double>>> EditChart()
         {
-            
+            return await this.expenses.PopulatingChart();
         }
     }
 }

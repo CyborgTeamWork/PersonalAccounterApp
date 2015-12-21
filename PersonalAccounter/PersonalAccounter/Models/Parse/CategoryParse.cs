@@ -16,5 +16,12 @@ namespace PersonalAccounter.Models.Parse
             get { return this.GetProperty<string>(); }
             set { this.SetProperty<string>(value); }
         }
+
+        [ParseFieldName("Expenses")]
+        public List<ExpenseParse> Expenses
+        {
+            get { return this.GetProperty<List<ExpenseParse>>(); }
+            set { this.SetProperty<List<ExpenseParse>>(value); }
+        } 
     }
 }

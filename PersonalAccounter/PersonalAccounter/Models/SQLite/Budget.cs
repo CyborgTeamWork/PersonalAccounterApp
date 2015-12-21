@@ -24,6 +24,8 @@ namespace PersonalAccounter.Models.SQLite
 
         public double Saved { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         [ForeignKey("")]
         public int UserId { get; set; }
     }

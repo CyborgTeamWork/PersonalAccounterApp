@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
 using Windows.Storage;
+using PersonalAccounter.Models.SQLite;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Platform.WinRT;
@@ -36,7 +37,7 @@ namespace PersonalAccounter.Models
         public async void InitAsync()
         {
             var connection = this.GetDbConnectionAsync();
-            await connection.CreateTablesAsync<User, Expense, Wishlist>();
+            await connection.CreateTablesAsync<User, Expense, Budget>();
         }
     }
 }

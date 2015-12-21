@@ -1,25 +1,13 @@
-﻿using Windows.Security.Cryptography.Core;
-using Parse;
-using PersonalAccounter.Helpers.ViewModelHelpers;
-using PersonalAccounter.Models;
-using PersonalAccounter.Models.Parse;
-using PersonalAccounter.Models.Repository;
-using PersonalAccounter.ViewModels;
-using SQLite.Net;
-using SQLite.Net.Async;
-
-namespace PersonalAccounter
+﻿namespace PersonalAccounter
 {
-    using PersonalAccounter.Views;
     using System;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Navigation;
+    using Parse;
+    using PersonalAccounter.Models.Parse;
 
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     sealed partial class App : Application
     {
         public App()
@@ -30,7 +18,7 @@ namespace PersonalAccounter
             ParseObject.RegisterSubclass<CategoryParse>();
             ParseObject.RegisterSubclass<BudgetParse>();
             ParseObject.RegisterSubclass<ExpenseParse>();
-            ParseUser.RegisterSubclass<UserParse>();
+            ParseObject.RegisterSubclass<UserParse>();
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)

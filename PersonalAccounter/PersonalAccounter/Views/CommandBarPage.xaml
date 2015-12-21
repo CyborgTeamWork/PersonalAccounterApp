@@ -41,16 +41,16 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150" />
-                    <RowDefinition Height="350" />
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="400" />
+                    <RowDefinition Height="0"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Style="{StaticResource MainGridStyle}">
 
-                    <CaptureElement Name="PreviewControl" 
+                    <!--<CaptureElement Name="PreviewControl" 
                                     Stretch="Fill" 
                                     Height="150" 
-                                    Width="200" />
+                                    Width="200" />-->
 
 
                     <Image Name="PreviewFrameImage" 
@@ -65,13 +65,15 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="1"  Height="280">
+                <Grid Grid.Row="1" Margin="0,0,0,-10" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0*" />
+                        <RowDefinition Height="41*"/>
+                        <RowDefinition Height="35*" />
+                        <RowDefinition Height="45*"/>
+                        <RowDefinition Height="63*"/>
+                        <RowDefinition Height="45*"/>
+                        <RowDefinition Height="51*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -79,19 +81,14 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" 
-                               Grid.ColumnSpan="3" 
-                               Text="Create new expense" 
-                               Style="{StaticResource TitleExpenseTextBlockStyle}"/>
-
                     <TextBlock Grid.Row="1" Grid.ColumnSpan="3"  Text="Add Expense name: " 
-                               Style="{StaticResource InputItemTextBlockStyle}"/>
+                               Style="{StaticResource InputItemTextBlockStyle}" Margin="10,10,50,24.667"/>
                     <TextBox Name="tbName"
                              PlaceholderText="Add Expense Name" 
                              Grid.Row="1"  
                              Grid.ColumnSpan="3" 
                              Text="{Binding Name, Mode=TwoWay}"
-                             Style="{StaticResource InputItemTextBoxStyle}"/>
+                             Style="{StaticResource InputItemTextBoxStyle}" Margin="10,31,50,35" Height="Auto" Grid.RowSpan="2"/>
 
                     <!--<TextBlock Grid.Row="2" 
                                Grid.ColumnSpan="3"  
@@ -99,55 +96,76 @@
                                Style="{StaticResource InputItemTextBlockStyle}"/>-->
                     <TextBox Name="tbImage" 
                              Text="{Binding ImageUrl, Mode=TwoWay}" 
-                             Grid.Row="2" 
+                             Grid.Row="3" 
                              Grid.Column="0"  
                              Grid.ColumnSpan="1" 
                              PlaceholderText="Add ImageUrl"
-                             Style="{StaticResource InputItemTextBoxStyle}" />
+                             Style="{StaticResource InputItemTextBoxStyle}" Margin="10,1,49.667,9" Height="Auto" />
                     <TextBlock Grid.Row="2" Grid.ColumnSpan="3"  Text="Add picture" 
-                               Style="{StaticResource InputItemTextBlockStyle}"/>
-                    <Button Grid.Row="2" 
+                               Style="{StaticResource InputItemTextBlockStyle}" Margin="10,20.333,50,5"/>
+
+                    <Button Grid.Row="3" 
                             Grid.Column="2" 
                             Grid.ColumnSpan="1" 
                             Name="GetPreviewFrameButton" 
                             Content="Use Camera" 
-                            Tapped="GetPreviewFrameButton_Tapped" 
-                            Margin="10" 
-                            IsEnabled="True"/>
+                            Margin="0.333,0,0,30" 
+                            IsEnabled="True" Height="31" Width="99"/>
 
 
                     <TextBlock Grid.Row="3"  
                                Grid.ColumnSpan="3"  
                                Text="Cost: " 
-                               Style="{StaticResource InputItemTextBlockStyle}"/>
+                               Style="{StaticResource InputItemTextBlockStyle}" Margin="10,57,50,73.667" Grid.RowSpan="2"/>
                     <StackPanel Orientation="Horizontal" 
-                                Grid.Row="3"  
+                                Grid.Row="4"  
                                 Grid.ColumnSpan="3" 
-                                Height="30" 
-                                Margin="36,2,24,0"  >
+                                Margin="36,12,24,9"  >
                         <Slider 
-                            Name="tbCost" 
-                            Value="{Binding Cost, Mode=TwoWay}"
-                                Style="{StaticResource CostSliderStyle}"/>
+                    		x:Name="tbCost" 
+                    		Value="{Binding Cost, Mode=TwoWay}"
+                    		Style="{StaticResource CostSliderStyle}" Margin="12,3,12,31.333"/>
                         <TextBox 
-                            Text="{Binding ElementName=tbCost, 
-                            Path=Value, 
-                            UpdateSourceTrigger=PropertyChanged, 
-                            Mode=TwoWay}" 
-                                Style="{StaticResource CostSliderTexBox}"/>
+                        	Text="{Binding Value, ElementName=tbCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        	Style="{StaticResource CostSliderTexBox}" Margin="0,0,0,31.333"/>
                     </StackPanel>
 
                     <TextBlock Grid.Row="4"  
                                Grid.ColumnSpan="3" 
                                Text="Description: "  
-                               Margin="36,0,24,2"  
-                               Foreground="White"/>
+                               Margin="10,69,50,54.667"  
+                               Foreground="White" Grid.RowSpan="2"/>
                     <TextBox Name="tbDesc" 
-                             Grid.Row="4" 
+                             Grid.Row="5" 
                              Grid.ColumnSpan="3"  
                              Text="{Binding Description, Mode=TwoWay}" 
                              PlaceholderText="Description" 
-                             Style="{StaticResource ShortInfoTextBoxStyle}"/>
+                             Style="{StaticResource ShortInfoTextBoxStyle}" Margin="10,6.333,50,6.667" Height="Auto"/>
+
+                    <RelativePanel
+                        Grid.Row ="6"
+                                HorizontalAlignment="Stretch" Grid.ColumnSpan="3" Margin="0,0.333,10,0"
+                                   >
+                        <RadioButton GroupName="Category" 
+                                     Name="Household" 
+                                     Content="Household" Margin="10,0,-10,0"
+                                     Checked="Household_OnChecked"
+                                   ></RadioButton>
+                        <RadioButton GroupName="Category" 
+                                     Name="Lifestyle"
+                                     RelativePanel.AlignHorizontalCenterWith="Household"
+                                     Content="Lifestyle" 
+                                     Margin="130,0,-100,0" 
+                                     Width="90"
+                                     Checked="Household_OnChecked"></RadioButton>
+                        <RadioButton GroupName="Category" 
+                                     Name="Unexpected"
+                                     RelativePanel.AlignHorizontalCenterWith="Lifestyle"
+                                     Content ="Unexpected" 
+                                     Margin="230,0,-230,0" 
+                                     Width="100"
+                                     Checked="Household_OnChecked"></RadioButton>
+                    </RelativePanel>
                 </Grid>
             </Grid>
         </Grid>
@@ -158,7 +176,9 @@
                     VerticalAlignment="Bottom"  
                     HorizontalContentAlignment="Stretch">
 
-            <AppBarButton Icon="Save" Label="Save">
+            <AppBarButton Icon="Save" 
+                          Label="Save"
+                          Click="ButtonBase_OnClick">
             </AppBarButton>
 
             <AppBarButton Icon="Cancel" Label="Cancel">
@@ -171,10 +191,13 @@
                                        Text="The current changes will not be saved. Would you like to continue?" 
                                        Margin="0,0,0,12" />
                             <RelativePanel>
-                                <Button Name="Confirm" Content="Ok" />
+                                <Button Name="Confirm" 
+                                        Content="Ok" 
+                                        Click ="Confirm_OnClick"/>
                                 <Button RelativePanel.AlignLeftWith="Confirm" 
                                         Margin="60, 0, 0, 0" 
-                                        Content="Cancel"></Button>
+                                        Content="Cancel"
+                                        Click ="DeleteConfirmation_Click"></Button>
                             </RelativePanel>
                         </StackPanel>
                     </Flyout>
