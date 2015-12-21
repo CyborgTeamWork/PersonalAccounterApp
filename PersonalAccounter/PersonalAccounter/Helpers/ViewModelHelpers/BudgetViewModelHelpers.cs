@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Popups;
 
 namespace PersonalAccounter.Helpers.ViewModelHelpers
 {
@@ -38,6 +39,8 @@ namespace PersonalAccounter.Helpers.ViewModelHelpers
             };
 
             await this.budgets.Insert(budget);
+            var successMessage = new MessageDialog("You successfully added your budget expectancies!");
+            await successMessage.ShowAsync();
         }
 
         public async void CreateNewBudgetInParse(double overall, double household, double lifestyle, double unexpected)
@@ -90,14 +93,12 @@ namespace PersonalAccounter.Helpers.ViewModelHelpers
 
         public async Task<int> GetUserId()
         {
-            var current = (UserParse)ParseUser.CurrentUser;
-            var username = current.Username;
-            var userCollection = await this.users.Get();
-            var user = userCollection
-                    .Where(u => u.Username == username)
-                    .FirstOrDefault();
-            var  userId = user.Id;
-            return userId;
+                var current = ParseUser.CurrentUser.Username;
+                var userCollection = await this.users.Get();
+                var user = userCollection
+                    .FirstOrDefault(b => b.Username == current);
+                var userId = user.Id;
+                return userId;
         }
 
         public async Task<int> CalculateAngle()

@@ -105,6 +105,7 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\Class1.cs" />
     <Compile Include="Helpers\Validations.cs" />
     <Compile Include="Helpers\ViewModelHelpers\BudgetViewModelHelpers.cs" />
     <Compile Include="Helpers\ViewModelHelpers\ExpenseViewModelHelper.cs" />
@@ -128,6 +129,9 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignOut.xaml.cs">
+      <DependentUpon>SignOut.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BudgetDisplayPage.xaml.cs">
       <DependentUpon>BudgetDisplayPage.xaml</DependentUpon>
@@ -205,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SignIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignOut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

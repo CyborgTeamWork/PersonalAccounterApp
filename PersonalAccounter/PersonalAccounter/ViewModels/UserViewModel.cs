@@ -35,5 +35,10 @@ namespace PersonalAccounter.ViewModels
         {
            return await this.users.Get();
         }
+
+        public void SignOut()
+        {
+            this.users.SignOutUsingParse();
+        }
     }
 }

@@ -10,7 +10,10 @@
     Name="expensePage"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Background="#ff7f27" Name="MainGrid">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" 
+          Background="#ff7f27" 
+          Name="MainGrid"
+          DoubleTapped="UIElement_OnDoubleTapped">
         <Grid.Resources>
             <Storyboard x:Name="ShowStoryboard">
                 <DoubleAnimation Storyboard.TargetName="topbar"
@@ -40,9 +43,11 @@
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Expenses}"
                   ItemTemplate ="{StaticResource ExpensesItemTemplate}"
-           DoubleTapped="UIElement_OnDoubleTapped"
-            Margin="0,70,0,0">
-
+            Margin="0,70,0,0"
+            CanDrag ="True"
+            AllowDrop="True"
+            CanReorderItems="True"
+            >
         </ListView>
 
         <CommandBar x:Name="topbar"

@@ -47,12 +47,6 @@
 
                 <Grid Grid.Row="0" Style="{StaticResource MainGridStyle}">
 
-                    <!--<CaptureElement Name="PreviewControl" 
-                                    Stretch="Fill" 
-                                    Height="150" 
-                                    Width="200" />-->
-
-
                     <Image Name="PreviewFrameImage" 
                            Height="150" 
                            Width="200" />

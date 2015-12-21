@@ -15,10 +15,6 @@ namespace PersonalAccounter
     using PersonalAccounter.Controls;
     using PersonalAccounter.Views;
 
-    /// <summary>
-    /// The "chrome" layer of the app that provides top-level navigation with
-    /// proper keyboarding navigation.
-    /// </summary>
     public sealed partial class AppShell : Page
     {
         private List<NavMenuItem> navigation = new List<NavMenuItem>(
@@ -46,7 +42,7 @@ namespace PersonalAccounter
                 {
                     Symbol = Symbol.Go,
                    Label = "Sign Out",
-                   DestPage = typeof(SignIn)
+                   DestPage = typeof(SignOut)
                 },
                 new NavMenuItem()
                 {
@@ -75,7 +71,12 @@ namespace PersonalAccounter
             };
 
             SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManager_BackRequested;
+            this.LoadMenu();
+           
+        }
 
+        public void LoadMenu()
+        {
             if (ParseUser.CurrentUser != null)
             {
                 NavMenuList.ItemsSource = navlist;
@@ -86,29 +87,7 @@ namespace PersonalAccounter
             }
         }
 
-        public void SplitView_ManipulationStarted(object sender, ManipulationDeltaRoutedEventArgs e)
-        {
-            int a = 4;
-        }
-        public void SplitView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
-        {
-                var b = e.Cumulative;
-                var bb = b.Translation;
-                var x = bb.X;
-                var currentpoint = e.Position.X;
-            int a = 6;
-            //if (currentpoint.X - initialpoint.X >= 500)
-            //    //500 is the threshold value, where you want to trigger the swipe right event
-            //{
-            //    System.Diagnostics.Debug.WriteLine("Swipe Right");
-            //    e.Complete();
-            //}
-        }
-
-        //private void ManipulationsComplete(object sender, ManipulationCompletedRoutedEventArgs e)
-        //{
-        //}
-
+      
         public Frame AppFrame { get { return this.frame; } }
 
         private void AppShell_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -238,6 +217,7 @@ namespace PersonalAccounter
         private void TogglePaneButton_Checked(object sender, RoutedEventArgs e)
         {
             RootSplitView.IsPaneOpen = !RootSplitView.IsPaneOpen;
+            this.LoadMenu();
         }
  
         private void NavMenuItemContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)

@@ -17,7 +17,7 @@
             this.InitializeComponent();
             this.expenses = new ExpenseViewModel();
 
-            NavigationCacheMode = NavigationCacheMode.Required;
+            //NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         public void DeleteConfirmation_Click(object sender, RoutedEventArgs e)
@@ -71,6 +71,7 @@
             var category = selected;
 
             this.expenses.AddExpense(name, imageUrl, description, cost, selected);
+            this.Frame.Navigate(typeof (ExpensePage));
         }
     }
 }

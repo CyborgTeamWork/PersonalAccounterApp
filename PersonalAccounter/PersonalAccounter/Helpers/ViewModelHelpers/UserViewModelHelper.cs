@@ -1,9 +1,4 @@
-﻿using System;
-using Windows.Foundation.Diagnostics;
-using Windows.UI.Popups;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
-
-namespace PersonalAccounter.Helpers.ViewModelHelpers
+﻿namespace PersonalAccounter.Helpers.ViewModelHelpers
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -12,6 +7,8 @@ namespace PersonalAccounter.Helpers.ViewModelHelpers
     using Models.Parse;
     using Models.Repository;
     using Models.SQLite.Repository;
+    using System;
+    using Windows.UI.Popups;
 
     public class UserViewModelHelper
     {
@@ -46,23 +43,41 @@ namespace PersonalAccounter.Helpers.ViewModelHelpers
                 Password = password
             };
 
-            if (user.IsNew)
+            if (user.IsDirty)
             {
                 await user.SignUpAsync();
                 await user.SaveAsync();
             }
             else
             {
-                var successMessage = new MessageDialog("You already have a profile. Please, use the sign in form!");
-                await successMessage.ShowAsync();
+                await ParseUser.LogInAsync(username, password);
+                //var successMessage = new MessageDialog("You already have a profile. Please, use the sign in form!");
+                //await successMessage.ShowAsync();
             }
         }
 
         public async void SignInUsingParse(string username, string password)
         {
-            await ParseUser.LogInAsync(username, password);
-            var successMessage = new MessageDialog("You successfully signed in!");
-            await successMessage.ShowAsync();
+            var coll = await this.users.Get();
+
+            if (coll.Contains(new User {Username = username, Password = password}))
+            {
+                await ParseUser.LogInAsync(username, password);
+                var successMessage = new MessageDialog("You successfully signed in!");
+                await successMessage.ShowAsync();
+            }
+            else
+            {
+                await this.users.Insert(new User {Username = username, Password = password});
+                var user = ParseUser.Create<UserParse>();
+                user = new UserParse
+                {
+                    Username = username,
+                    Password = password
+                };
+
+                await user.SignUpAsync();
+            }
         }
         public async Task<List<User>> Get()
         {
@@ -72,6 +87,11 @@ namespace PersonalAccounter.Helpers.ViewModelHelpers
         public async Task<User> GetUserById(int id)
         {
             return await users.Get(id);
+        }
+
+        public void SignOutUsingParse()
+        {
+                ParseUser.LogOut();
         }
 
     }

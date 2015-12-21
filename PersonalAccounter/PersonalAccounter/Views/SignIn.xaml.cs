@@ -21,6 +21,7 @@ namespace PersonalAccounter.Views
     public sealed partial class SignIn : Page
     {
         private UserViewModel userViewModel = new UserViewModel();
+        private AppShell page = new AppShell();
         public SignIn()
         {
             this.InitializeComponent();
@@ -32,6 +33,7 @@ namespace PersonalAccounter.Views
             string username = id.Text;
             string password = pwd.Password;
             this.userViewModel.SignIn(username, password);
+            this.page.LoadMenu();
             this.Frame.Navigate(typeof(BudgetDisplayPage));
         }
 

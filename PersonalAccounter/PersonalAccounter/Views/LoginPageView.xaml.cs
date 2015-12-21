@@ -8,6 +8,7 @@
     public sealed partial class LoginPageView : Page
     {
         private UserViewModel userViewModel = new UserViewModel();
+        private AppShell page = new AppShell();
         public LoginPageView()
         {
             this.InitializeComponent();
@@ -19,6 +20,7 @@
             string username = id.Text;
             string password = pwd.Password;
             this.userViewModel.Register(username, password);
+            page.LoadMenu();
             this.Frame.Navigate(typeof(BudgetPage));
         }
 

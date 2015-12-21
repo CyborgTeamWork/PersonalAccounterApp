@@ -1,4 +1,7 @@
-﻿namespace PersonalAccounter.Views
+﻿using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+
+namespace PersonalAccounter.Views
 {
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -17,7 +20,7 @@
             this.DataContext = new ExpenseViewModel();
         }
 
-        public ObservableCollection<Expense> Expenses { get; set; } 
+       // public ObservableCollection<Expense> Expenses { get; set; }
 
         public void NavigateToAddViewClick(object sender, RoutedEventArgs e)
         {

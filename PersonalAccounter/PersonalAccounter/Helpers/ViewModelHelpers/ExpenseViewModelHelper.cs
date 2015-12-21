@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Popups;
 using PersonalAccounter.Models.SQLite;
 
 namespace PersonalAccounter.Helpers.ViewModelHelpers
@@ -41,6 +42,9 @@ namespace PersonalAccounter.Helpers.ViewModelHelpers
             };
 
             this.expenses.Insert(expense);
+
+            var successMessage = new MessageDialog("You successfully added a new expense");
+            await successMessage.ShowAsync();
         }
 
         public async void AddExpenseParse(string name, string imageUrl, string description, double price,
